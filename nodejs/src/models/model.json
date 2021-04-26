@@ -1,0 +1,37 @@
+[
+    {
+        "id":"1",
+        "canonical":"temp",
+        "name":"Temperature",
+        "description":"",
+        "engunit":"C"
+    },
+    {
+        "id":"1.1",
+        "canonical":"temp.us",
+        "name":"U.S. Temperature",
+        "description":"",
+        "engunit":"F"
+    },
+    {
+        "id":"1.2",
+        "canonical":"temp.eu",
+        "name":"EU Temperature",
+        "description":"",
+        "engunit":"C"
+    },
+    {
+        "id":"1.1.1",
+        "canonical":"temp.us.oilgas",
+        "name":"U.S. Oil and Gas Temperature",
+        "description":"",
+        "engunit":"C"
+    },
+    {
+        "id":"2",
+        "canonical":"pressure",
+        "name":"Pressure",
+        "description":"",
+        "engunit":"kpa"
+    }
+]
