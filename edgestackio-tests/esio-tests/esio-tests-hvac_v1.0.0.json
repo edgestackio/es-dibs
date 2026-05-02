@@ -1,0 +1,30 @@
+{
+  "dib_code": "ESIO-TESTS-HVAC",
+  "name": "ESIO Tests HVAC",
+  "version": "1.0.0",
+  "description": "EdgeStack.io HVAC Test",
+  "industry": "esio.tests.hvac",
+  "is_shareable": false,
+  "tag_definitions": [
+    {
+      "tag_code": "PRESSURE",
+      "name": "Pressue",
+      "canonical_name": "hvac.pressure",
+      "standard_unit": "psi",
+      "data_type": "Double",
+      "description": null,
+      "is_required": false,
+      "display_order": 0
+    },
+    {
+      "tag_code": "TEMPERATURE",
+      "name": "Temperature",
+      "canonical_name": "hvac.temperature",
+      "standard_unit": "F",
+      "data_type": "Double",
+      "description": null,
+      "is_required": false,
+      "display_order": 0
+    }
+  ]
+}
