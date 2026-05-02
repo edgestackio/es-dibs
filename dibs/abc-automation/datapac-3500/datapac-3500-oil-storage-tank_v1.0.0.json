@@ -1,0 +1,108 @@
+{
+  "$schema": "https://raw.githubusercontent.com/edgestackio/es-dibs/main/schemas/dib-definition.schema.json",
+  "dib_id": "10.20.10",
+  "dib_code": "ABC-DATAPAC3500-OIL-STORAGE-TANK",
+  "name": "ABC Automation DataPAC 3500 — Oil Storage Tank",
+  "version": "1.0.0",
+  "description": "Tank battery RTU configuration for the DataPAC 3500 monitoring an atmospheric oil storage tank. The DataPAC 3500 is a solar-powered, cellular RTU commonly deployed at unmanned lease locations.",
+  "industry": "oil-gas",
+  "is_shareable": true,
+  "tag_definitions": [
+    {
+      "dib_tag_id": "10.20.10.10",
+      "tag_code": "TK_LVL",
+      "name": "Tank Level",
+      "canonical_name": "tank.level",
+      "standard_unit": "ft",
+      "data_type": "Double",
+      "description": "Float or ultrasonic level transmitter output in feet from tank bottom.",
+      "is_required": true,
+      "display_order": 10
+    },
+    {
+      "dib_tag_id": "10.20.10.20",
+      "tag_code": "TK_TEMP",
+      "name": "Tank Temperature",
+      "canonical_name": "tank.temperature",
+      "standard_unit": "degF",
+      "data_type": "Double",
+      "description": "RTD or thermocouple inserted at mid-tank elevation for fluid temperature.",
+      "is_required": false,
+      "display_order": 20
+    },
+    {
+      "dib_tag_id": "10.20.10.30",
+      "tag_code": "TK_PRESS",
+      "name": "Tank Pressure",
+      "canonical_name": "tank.pressure",
+      "standard_unit": "psi",
+      "data_type": "Double",
+      "description": "Vapor recovery unit (VRU) inlet pressure or atmospheric vent pressure. Zero on open-top tanks.",
+      "is_required": false,
+      "display_order": 30
+    },
+    {
+      "dib_tag_id": "10.20.10.40",
+      "tag_code": "NET_BBL",
+      "name": "Net Volume (Barrels)",
+      "canonical_name": "tank.net_volume",
+      "standard_unit": "bbl",
+      "data_type": "Double",
+      "description": "Calculated net barrels from DataPAC strapping table and VCF correction. Derived from TK_LVL and TK_TEMP.",
+      "is_required": false,
+      "display_order": 40
+    },
+    {
+      "dib_tag_id": "10.20.10.50",
+      "tag_code": "GRS_BBL",
+      "name": "Gross Volume (Barrels)",
+      "canonical_name": "tank.gross_volume",
+      "standard_unit": "bbl",
+      "data_type": "Double",
+      "description": "Gross barrels at observed temperature from strapping table only. No VCF applied.",
+      "is_required": false,
+      "display_order": 50
+    },
+    {
+      "dib_tag_id": "10.20.10.60",
+      "tag_code": "API_GRAV",
+      "name": "API Gravity",
+      "canonical_name": "tank.density",
+      "standard_unit": "API",
+      "data_type": "Double",
+      "description": "Crude API gravity entered as a fixed site parameter in the DataPAC configuration. Used for VCF table lookup.",
+      "is_required": false,
+      "display_order": 60
+    },
+    {
+      "tag_code": "BATT_VDC",
+      "name": "Battery Voltage",
+      "canonical_name": "datapac.battery_vdc",
+      "standard_unit": "V",
+      "data_type": "Double",
+      "description": "RTU battery bus voltage. Solar-charged 12 V system; alarm below 11.8 V.",
+      "is_required": false,
+      "display_order": 100
+    },
+    {
+      "tag_code": "SOLAR_VDC",
+      "name": "Solar Panel Voltage",
+      "canonical_name": "datapac.solar_vdc",
+      "standard_unit": "V",
+      "data_type": "Double",
+      "description": "Solar panel open-circuit voltage. Used to confirm panel health and daytime charging.",
+      "is_required": false,
+      "display_order": 110
+    },
+    {
+      "tag_code": "CELL_RSSI",
+      "name": "Cellular Signal Strength",
+      "canonical_name": "datapac.cell_rssi",
+      "standard_unit": "dBm",
+      "data_type": "Double",
+      "description": "Cellular modem RSSI in dBm. Values above -85 dBm indicate reliable connectivity.",
+      "is_required": false,
+      "display_order": 120
+    }
+  ]
+}
