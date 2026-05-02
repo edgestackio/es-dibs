@@ -1,0 +1,116 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/edgestackio/es-dibs/main/schemas/dib-definition.schema.json",
+  "title": "DIB Definition",
+  "description": "JSON Schema for a DIB (Data Information Base) definition file in the es-dibs registry.",
+  "type": "object",
+  "required": [
+    "dib_code",
+    "name",
+    "version",
+    "tag_definitions"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "dib_id": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Taxonomy reference ID from registry/taxonomy.json. Format: {industry}.{sub_industry}.{device_type}. Declares which taxonomy device class this DIB implements."
+    },
+    "dib_code": {
+      "type": "string",
+      "pattern": "^[A-Z0-9][A-Z0-9_-]*$",
+      "description": "Unique uppercase identifier for this DIB. Conventionally: {MANUFACTURER}-{MODEL}-{CAPABILITY} e.g. EMERSON-ROC809-TANK-BATTERY"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable name for this DIB definition."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Semantic version of this DIB definition. Increment major for breaking tag changes, minor for additions, patch for corrections."
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of what device or capability this DIB defines."
+    },
+    "industry": {
+      "type": "string",
+      "description": "Industry code from the taxonomy (e.g. oil-gas, water-wastewater). Informational \u2014 dib_id is the authoritative taxonomy reference."
+    },
+    "is_shareable": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether this DIB can be shared across organizations in the platform."
+    },
+    "tag_definitions": {
+      "type": "array",
+      "description": "Tag standards defined by this DIB. Each entry maps a device tag to its canonical form.",
+      "items": {
+        "type": "object",
+        "required": [
+          "tag_code",
+          "name",
+          "canonical_name",
+          "standard_unit"
+        ],
+        "properties": {
+          "dib_tag_id": {
+            "type": "string",
+            "pattern": "^\\d+\\.\\d+\\.\\d+\\.\\d+$",
+            "description": "Taxonomy tag reference ID. Format: {industry}.{sub_industry}.{device_type}.{tag}. Must match a tag entry for the device_type referenced by dib_id."
+          },
+          "tag_code": {
+            "type": "string",
+            "pattern": "^[A-Z0-9][A-Z0-9_]*$",
+            "description": "Uppercase tag identifier as published by the device. e.g. TG1_LEVEL, CASING_PSI"
+          },
+          "name": {
+            "type": "string",
+            "description": "Human-readable tag name."
+          },
+          "canonical_name": {
+            "type": "string",
+            "pattern": "^[a-z0-9_.]+$",
+            "description": "Dot-notation canonical name used in the normalized data stream. e.g. tank.level"
+          },
+          "standard_unit": {
+            "type": "string",
+            "description": "Standard unit of measure for the normalized value. e.g. ft, psi, degF, bbl"
+          },
+          "data_type": {
+            "type": "string",
+            "enum": [
+              "Double",
+              "Float",
+              "Int32",
+              "Int64",
+              "Boolean",
+              "String"
+            ],
+            "default": "Double"
+          },
+          "description": {
+            "type": "string"
+          },
+          "is_required": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether this tag is required for the device to conform to the referenced taxonomy standard."
+          },
+          "display_order": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 0
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,378 @@
+{
+  "$schema": "https://raw.githubusercontent.com/edgestackio/es-dibs/main/registry/industry.schema.json",
+  "id": 40,
+  "code": "buildings-facilities",
+  "name": "Buildings & Facilities",
+  "description": "Commercial and industrial building systems including HVAC, electrical distribution, lighting, plumbing, fire safety, and access control.",
+  "sub_industries": [
+    {
+      "id": 10,
+      "code": "hvac",
+      "name": "HVAC",
+      "description": "Heating, ventilation, and air conditioning equipment including rooftop units, air handlers, chillers, boilers, and VAV systems.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "rooftop-unit",
+          "name": "Rooftop Unit (RTU)",
+          "dib_id": "40.10.10",
+          "description": "Self-contained packaged HVAC unit mounted on the building roof, providing heating and cooling to a single zone.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "supply_air_temp",
+              "name": "Supply Air Temperature",
+              "canonical_name": "rtu.supply_air_temp",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "40.10.10.10",
+              "is_required": true,
+              "description": "Temperature of conditioned air leaving the unit and entering the space."
+            },
+            {
+              "id": 20,
+              "code": "return_air_temp",
+              "name": "Return Air Temperature",
+              "canonical_name": "rtu.return_air_temp",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "40.10.10.20",
+              "is_required": true,
+              "description": "Temperature of air returning from the conditioned space."
+            },
+            {
+              "id": 30,
+              "code": "outdoor_air_temp",
+              "name": "Outdoor Air Temperature",
+              "canonical_name": "rtu.outdoor_air_temp",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "40.10.10.30",
+              "is_required": false,
+              "description": "Outdoor air temperature at the unit. Used for economizer control."
+            },
+            {
+              "id": 40,
+              "code": "supply_fan_speed",
+              "name": "Supply Fan Speed",
+              "canonical_name": "rtu.supply_fan_speed",
+              "standard_unit": "%",
+              "data_type": "Double",
+              "dib_tag_id": "40.10.10.40",
+              "is_required": false,
+              "description": "Supply fan VFD speed as a percentage of maximum."
+            },
+            {
+              "id": 50,
+              "code": "compressor_status",
+              "name": "Compressor Status",
+              "canonical_name": "rtu.compressor_status",
+              "standard_unit": "Boolean",
+              "data_type": "Boolean",
+              "dib_tag_id": "40.10.10.50",
+              "is_required": false,
+              "description": "Compressor operational status."
+            },
+            {
+              "id": 60,
+              "code": "filter_dp",
+              "name": "Filter Differential Pressure",
+              "canonical_name": "rtu.filter_dp",
+              "standard_unit": "inH2O",
+              "data_type": "Double",
+              "dib_tag_id": "40.10.10.60",
+              "is_required": false,
+              "description": "Pressure drop across the air filter. Rising values trigger maintenance alert."
+            }
+          ]
+        },
+        {
+          "id": 20,
+          "code": "air-handler",
+          "name": "Air Handler (AHU)",
+          "dib_id": "40.10.20",
+          "description": "Central air handling unit conditioning and distributing air throughout a building zone. Connected to a central chiller and boiler plant.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "supply_air_temp",
+              "name": "Supply Air Temperature",
+              "canonical_name": "ahu.supply_air_temp",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "40.10.20.10",
+              "is_required": true,
+              "description": "Discharge air temperature leaving the AHU."
+            },
+            {
+              "id": 20,
+              "code": "return_air_temp",
+              "name": "Return Air Temperature",
+              "canonical_name": "ahu.return_air_temp",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "40.10.20.20",
+              "is_required": true,
+              "description": "Mixed return air temperature entering the AHU."
+            },
+            {
+              "id": 30,
+              "code": "supply_cfm",
+              "name": "Supply Airflow",
+              "canonical_name": "ahu.supply_cfm",
+              "standard_unit": "cfm",
+              "data_type": "Double",
+              "dib_tag_id": "40.10.20.30",
+              "is_required": false,
+              "description": "Supply air volume flow rate in cubic feet per minute."
+            },
+            {
+              "id": 40,
+              "code": "cooling_valve",
+              "name": "Cooling Valve Position",
+              "canonical_name": "ahu.cooling_valve",
+              "standard_unit": "%",
+              "data_type": "Double",
+              "dib_tag_id": "40.10.20.40",
+              "is_required": false,
+              "description": "Chilled water valve position as a percentage open."
+            },
+            {
+              "id": 50,
+              "code": "heating_valve",
+              "name": "Heating Valve Position",
+              "canonical_name": "ahu.heating_valve",
+              "standard_unit": "%",
+              "data_type": "Double",
+              "dib_tag_id": "40.10.20.50",
+              "is_required": false,
+              "description": "Hot water valve position as a percentage open."
+            },
+            {
+              "id": 60,
+              "code": "filter_dp",
+              "name": "Filter DP",
+              "canonical_name": "ahu.filter_dp",
+              "standard_unit": "inH2O",
+              "data_type": "Double",
+              "dib_tag_id": "40.10.20.60",
+              "is_required": false,
+              "description": "Pressure drop across supply air filters."
+            }
+          ]
+        },
+        {
+          "id": 30,
+          "code": "chiller",
+          "name": "Chiller",
+          "dib_id": "40.10.30",
+          "description": "Central cooling plant producing chilled water for distribution to AHUs and fan coil units.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "chws_temp",
+              "name": "Chilled Water Supply Temp",
+              "canonical_name": "chiller.chws_temp",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "40.10.30.10",
+              "is_required": true,
+              "description": "Chilled water supply temperature leaving the evaporator."
+            },
+            {
+              "id": 20,
+              "code": "chwr_temp",
+              "name": "Chilled Water Return Temp",
+              "canonical_name": "chiller.chwr_temp",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "40.10.30.20",
+              "is_required": true,
+              "description": "Chilled water return temperature. Delta-T with supply indicates load."
+            },
+            {
+              "id": 30,
+              "code": "kw_ton",
+              "name": "Efficiency (kW/ton)",
+              "canonical_name": "chiller.kw_ton",
+              "standard_unit": "kW/ton",
+              "data_type": "Double",
+              "dib_tag_id": "40.10.30.30",
+              "is_required": false,
+              "description": "Energy efficiency in kW per ton of cooling. Lower is better."
+            },
+            {
+              "id": 40,
+              "code": "capacity_percent",
+              "name": "Capacity Loading",
+              "canonical_name": "chiller.capacity_percent",
+              "standard_unit": "%",
+              "data_type": "Double",
+              "dib_tag_id": "40.10.30.40",
+              "is_required": false,
+              "description": "Percentage of rated cooling capacity currently in use."
+            },
+            {
+              "id": 50,
+              "code": "run_status",
+              "name": "Run Status",
+              "canonical_name": "chiller.run_status",
+              "standard_unit": "Boolean",
+              "data_type": "Boolean",
+              "dib_tag_id": "40.10.30.50",
+              "is_required": false,
+              "description": "Chiller operational status."
+            }
+          ]
+        },
+        {
+          "id": 40,
+          "code": "boiler",
+          "name": "Boiler",
+          "dib_id": "40.10.40",
+          "description": "Hot water or steam boiler providing heating to the building distribution system.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "supply_temp",
+              "name": "Supply Water Temperature",
+              "canonical_name": "boiler.supply_temp",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "40.10.40.10",
+              "is_required": true,
+              "description": "Hot water supply temperature leaving the boiler."
+            },
+            {
+              "id": 20,
+              "code": "return_temp",
+              "name": "Return Water Temperature",
+              "canonical_name": "boiler.return_temp",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "40.10.40.20",
+              "is_required": true,
+              "description": "Return water temperature entering the boiler."
+            },
+            {
+              "id": 30,
+              "code": "flue_gas_temp",
+              "name": "Flue Gas Temperature",
+              "canonical_name": "boiler.flue_gas_temp",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "40.10.40.30",
+              "is_required": false,
+              "description": "Flue gas temperature. Used to calculate combustion efficiency."
+            },
+            {
+              "id": 40,
+              "code": "firing_rate",
+              "name": "Firing Rate",
+              "canonical_name": "boiler.firing_rate",
+              "standard_unit": "%",
+              "data_type": "Double",
+              "dib_tag_id": "40.10.40.40",
+              "is_required": false,
+              "description": "Burner firing rate as a percentage of maximum input."
+            },
+            {
+              "id": 50,
+              "code": "run_status",
+              "name": "Run Status",
+              "canonical_name": "boiler.run_status",
+              "standard_unit": "Boolean",
+              "data_type": "Boolean",
+              "dib_tag_id": "40.10.40.50",
+              "is_required": false,
+              "description": "Boiler burner operational status."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "code": "electrical-distribution",
+      "name": "Electrical Distribution",
+      "description": "Building electrical distribution panels, switchgear, and power metering equipment.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "electrical-panel",
+          "name": "Electrical Panel / Power Meter",
+          "dib_id": "40.20.10",
+          "description": "Sub-panel or main electrical panel with power monitoring for energy management.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "voltage_l1_n",
+              "name": "Voltage L1-N",
+              "canonical_name": "panel.voltage_l1_n",
+              "standard_unit": "V",
+              "data_type": "Double",
+              "dib_tag_id": "40.20.10.10",
+              "is_required": true,
+              "description": "Line-to-neutral voltage on phase L1."
+            },
+            {
+              "id": 20,
+              "code": "current_l1",
+              "name": "Current L1",
+              "canonical_name": "panel.current_l1",
+              "standard_unit": "A",
+              "data_type": "Double",
+              "dib_tag_id": "40.20.10.20",
+              "is_required": true,
+              "description": "Current on phase L1."
+            },
+            {
+              "id": 30,
+              "code": "power_kw",
+              "name": "Active Power",
+              "canonical_name": "panel.power_kw",
+              "standard_unit": "kW",
+              "data_type": "Double",
+              "dib_tag_id": "40.20.10.30",
+              "is_required": true,
+              "description": "Total three-phase real power consumption."
+            },
+            {
+              "id": 40,
+              "code": "power_factor",
+              "name": "Power Factor",
+              "canonical_name": "panel.power_factor",
+              "standard_unit": "%",
+              "data_type": "Double",
+              "dib_tag_id": "40.20.10.40",
+              "is_required": false,
+              "description": "Displacement power factor. Values below 0.95 may incur utility penalties."
+            },
+            {
+              "id": 50,
+              "code": "energy_kwh",
+              "name": "Energy Consumption",
+              "canonical_name": "panel.energy_kwh",
+              "standard_unit": "kWh",
+              "data_type": "Double",
+              "dib_tag_id": "40.20.10.50",
+              "is_required": false,
+              "description": "Cumulative energy consumption in kilowatt-hours since last reset."
+            },
+            {
+              "id": 60,
+              "code": "demand_kw",
+              "name": "Peak Demand",
+              "canonical_name": "panel.demand_kw",
+              "standard_unit": "kW",
+              "data_type": "Double",
+              "dib_tag_id": "40.20.10.60",
+              "is_required": false,
+              "description": "15-minute interval demand. Used for utility demand charge calculations."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

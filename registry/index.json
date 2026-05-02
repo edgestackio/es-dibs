@@ -1,0 +1,19 @@
+{
+  "$schema": "./index.schema.json",
+  "version": "1.0.0",
+  "updated": "2026-05-01",
+  "maintainer": "EdgeStack <https://github.com/edgestackio>",
+  "description": "Master index of industries in the es-dibs taxonomy. Load this file to build navigation UI; load individual industry files on demand.",
+  "industries": [
+    { "id": 10,  "code": "oil-gas",               "name": "Oil & Gas",                   "file": "industries/T0000000010-oil-gas.json" },
+    { "id": 20,  "code": "water-wastewater",       "name": "Water & Wastewater",           "file": "industries/T0000000020-water-wastewater.json" },
+    { "id": 30,  "code": "power-utilities",        "name": "Power & Utilities",            "file": "industries/T0000000030-power-utilities.json" },
+    { "id": 40,  "code": "buildings-facilities",   "name": "Buildings & Facilities",       "file": "industries/T0000000040-buildings-facilities.json" },
+    { "id": 50,  "code": "manufacturing",          "name": "Manufacturing & Industrial",   "file": "industries/T0000000050-manufacturing.json" },
+    { "id": 60,  "code": "agriculture",            "name": "Agriculture",                  "file": "industries/T0000000060-agriculture.json" },
+    { "id": 70,  "code": "transportation",         "name": "Transportation & Logistics",   "file": "industries/T0000000070-transportation.json" },
+    { "id": 80,  "code": "mining-extraction",      "name": "Mining & Extraction",          "file": "industries/T0000000080-mining-extraction.json" },
+    { "id": 90,  "code": "chemical-process",       "name": "Chemical & Process",           "file": "industries/T0000000090-chemical-process.json" },
+    { "id": 100, "code": "food-beverage",          "name": "Food & Beverage",              "file": "industries/T0000000100-food-beverage.json" }
+  ]
+}

@@ -1,0 +1,225 @@
+{
+  "$schema": "https://raw.githubusercontent.com/edgestackio/es-dibs/main/registry/industry.schema.json",
+  "id": 60,
+  "code": "agriculture",
+  "name": "Agriculture",
+  "description": "Crop monitoring, precision irrigation, livestock operations, greenhouse environmental control, and grain storage management.",
+  "sub_industries": [
+    {
+      "id": 10,
+      "code": "field-monitoring",
+      "name": "Field / Crop Monitoring",
+      "description": "In-field environmental monitoring for precision agriculture including soil conditions, microclimate, and crop health.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "field-sensor-node",
+          "name": "Field Sensor Node",
+          "dib_id": "60.10.10",
+          "description": "Multi-sensor node deployed in agricultural fields measuring soil and atmospheric conditions for precision irrigation and crop management.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "soil_moisture_1",
+              "name": "Soil Moisture (Shallow)",
+              "canonical_name": "field.soil_moisture_shallow",
+              "standard_unit": "%",
+              "data_type": "Double",
+              "dib_tag_id": "60.10.10.10",
+              "is_required": true,
+              "description": "Volumetric soil moisture at shallow depth (6\u201312 inches). Primary irrigation trigger measurement."
+            },
+            {
+              "id": 20,
+              "code": "soil_moisture_2",
+              "name": "Soil Moisture (Deep)",
+              "canonical_name": "field.soil_moisture_deep",
+              "standard_unit": "%",
+              "data_type": "Double",
+              "dib_tag_id": "60.10.10.20",
+              "is_required": false,
+              "description": "Volumetric soil moisture at deeper depth (24\u201336 inches). Indicates root zone water availability."
+            },
+            {
+              "id": 30,
+              "code": "soil_temp",
+              "name": "Soil Temperature",
+              "canonical_name": "field.soil_temp",
+              "standard_unit": "degC",
+              "data_type": "Double",
+              "dib_tag_id": "60.10.10.30",
+              "is_required": false,
+              "description": "Soil temperature affecting seed germination, root growth, and microbial activity."
+            },
+            {
+              "id": 40,
+              "code": "air_temp",
+              "name": "Air Temperature",
+              "canonical_name": "field.air_temp",
+              "standard_unit": "degC",
+              "data_type": "Double",
+              "dib_tag_id": "60.10.10.40",
+              "is_required": false,
+              "description": "Ambient air temperature at the field location."
+            },
+            {
+              "id": 50,
+              "code": "humidity",
+              "name": "Relative Humidity",
+              "canonical_name": "field.humidity",
+              "standard_unit": "%",
+              "data_type": "Double",
+              "dib_tag_id": "60.10.10.50",
+              "is_required": false,
+              "description": "Relative humidity used for evapotranspiration calculations and disease risk modeling."
+            },
+            {
+              "id": 60,
+              "code": "rainfall",
+              "name": "Rainfall",
+              "canonical_name": "field.rainfall",
+              "standard_unit": "mm",
+              "data_type": "Double",
+              "dib_tag_id": "60.10.10.60",
+              "is_required": false,
+              "description": "Cumulative rainfall in millimeters. Used to adjust irrigation scheduling."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "code": "irrigation",
+      "name": "Irrigation",
+      "description": "Irrigation system monitoring and control including pumps, zone valves, and flow measurement.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "irrigation-controller",
+          "name": "Irrigation Controller",
+          "dib_id": "60.20.10",
+          "description": "Automated irrigation zone controller managing water application to crop fields or turf.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "flow_rate",
+              "name": "Flow Rate",
+              "canonical_name": "irrigation.flow_rate",
+              "standard_unit": "gpm",
+              "data_type": "Double",
+              "dib_tag_id": "60.20.10.10",
+              "is_required": true,
+              "description": "Current irrigation flow rate."
+            },
+            {
+              "id": 20,
+              "code": "pressure",
+              "name": "System Pressure",
+              "canonical_name": "irrigation.pressure",
+              "standard_unit": "psi",
+              "data_type": "Double",
+              "dib_tag_id": "60.20.10.20",
+              "is_required": true,
+              "description": "Irrigation system pressure. Low pressure indicates pump failure or line breaks."
+            },
+            {
+              "id": 30,
+              "code": "valve_status",
+              "name": "Valve Status",
+              "canonical_name": "irrigation.valve_status",
+              "standard_unit": "Boolean",
+              "data_type": "Boolean",
+              "dib_tag_id": "60.20.10.30",
+              "is_required": false,
+              "description": "Zone valve open/closed status."
+            },
+            {
+              "id": 40,
+              "code": "volume_applied",
+              "name": "Volume Applied",
+              "canonical_name": "irrigation.volume_applied",
+              "standard_unit": "gal",
+              "data_type": "Double",
+              "dib_tag_id": "60.20.10.40",
+              "is_required": false,
+              "description": "Total water volume applied in the current or last irrigation cycle."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "code": "grain-storage",
+      "name": "Grain Storage",
+      "description": "Grain bin monitoring for temperature, moisture, and aeration management to prevent spoilage.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "grain-bin",
+          "name": "Grain Bin",
+          "dib_id": "60.30.10",
+          "description": "Grain storage bin with temperature cable and moisture monitoring for spoilage prevention and quality preservation.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "temperature_1",
+              "name": "Grain Temperature (Upper)",
+              "canonical_name": "grain_bin.temperature_upper",
+              "standard_unit": "degC",
+              "data_type": "Double",
+              "dib_tag_id": "60.30.10.10",
+              "is_required": true,
+              "description": "Grain temperature in the upper zone of the bin. Hot spots indicate spoilage activity."
+            },
+            {
+              "id": 20,
+              "code": "temperature_2",
+              "name": "Grain Temperature (Lower)",
+              "canonical_name": "grain_bin.temperature_lower",
+              "standard_unit": "degC",
+              "data_type": "Double",
+              "dib_tag_id": "60.30.10.20",
+              "is_required": true,
+              "description": "Grain temperature in the lower zone of the bin."
+            },
+            {
+              "id": 30,
+              "code": "moisture",
+              "name": "Grain Moisture",
+              "canonical_name": "grain_bin.moisture",
+              "standard_unit": "%",
+              "data_type": "Double",
+              "dib_tag_id": "60.30.10.30",
+              "is_required": false,
+              "description": "Grain moisture content. Safe storage typically requires below 14% for corn, 13% for soybeans."
+            },
+            {
+              "id": 40,
+              "code": "fan_status",
+              "name": "Aeration Fan Status",
+              "canonical_name": "grain_bin.fan_status",
+              "standard_unit": "Boolean",
+              "data_type": "Boolean",
+              "dib_tag_id": "60.30.10.40",
+              "is_required": false,
+              "description": "Aeration fan operational status."
+            },
+            {
+              "id": 50,
+              "code": "fill_level",
+              "name": "Fill Level",
+              "canonical_name": "grain_bin.fill_level",
+              "standard_unit": "%",
+              "data_type": "Double",
+              "dib_tag_id": "60.30.10.50",
+              "is_required": false,
+              "description": "Bin fill level as a percentage of total capacity."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

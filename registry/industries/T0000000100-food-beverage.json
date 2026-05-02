@@ -1,0 +1,297 @@
+{
+  "$schema": "https://raw.githubusercontent.com/edgestackio/es-dibs/main/registry/industry.schema.json",
+  "id": 100,
+  "code": "food-beverage",
+  "name": "Food & Beverage",
+  "description": "Food and beverage processing including cold storage, fermentation, pasteurization, packaging, and CIP (Clean-In-Place) sanitation systems.",
+  "sub_industries": [
+    {
+      "id": 10,
+      "code": "cold-storage",
+      "name": "Cold Storage / Refrigeration",
+      "description": "Refrigerated storage rooms, walk-in coolers, and display cases maintaining product temperature for food safety compliance.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "cold-room",
+          "name": "Cold Room / Walk-In",
+          "dib_id": "100.10.10",
+          "description": "Refrigerated storage room for perishable food products. HACCP compliance requires continuous temperature logging and alarm management.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "air_temp",
+              "name": "Air Temperature",
+              "canonical_name": "cold_room.air_temp",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "100.10.10.10",
+              "is_required": true,
+              "description": "Ambient air temperature inside the cold room. Primary food safety compliance measurement."
+            },
+            {
+              "id": 20,
+              "code": "setpoint",
+              "name": "Temperature Setpoint",
+              "canonical_name": "cold_room.setpoint",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "100.10.10.20",
+              "is_required": false,
+              "description": "Target temperature setpoint."
+            },
+            {
+              "id": 30,
+              "code": "humidity",
+              "name": "Relative Humidity",
+              "canonical_name": "cold_room.humidity",
+              "standard_unit": "%",
+              "data_type": "Double",
+              "dib_tag_id": "100.10.10.30",
+              "is_required": false,
+              "description": "Relative humidity inside the cold room. Affects product quality and dehydration rates."
+            },
+            {
+              "id": 40,
+              "code": "door_status",
+              "name": "Door Status",
+              "canonical_name": "cold_room.door_status",
+              "standard_unit": "Boolean",
+              "data_type": "Boolean",
+              "dib_tag_id": "100.10.10.40",
+              "is_required": false,
+              "description": "Door open/closed status. Extended door open events trigger temperature alarms."
+            },
+            {
+              "id": 50,
+              "code": "compressor_status",
+              "name": "Compressor Status",
+              "canonical_name": "cold_room.compressor_status",
+              "standard_unit": "Boolean",
+              "data_type": "Boolean",
+              "dib_tag_id": "100.10.10.50",
+              "is_required": false,
+              "description": "Refrigeration compressor operational status."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "code": "brewing-fermentation",
+      "name": "Brewing & Fermentation",
+      "description": "Fermentation vessels and process control for brewing, winemaking, and bioreactor applications.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "fermentation-vessel",
+          "name": "Fermentation Vessel",
+          "dib_id": "100.20.10",
+          "description": "Temperature-controlled vessel for fermentation processes. Precise temperature control is critical for yeast activity, flavor development, and product consistency.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "temperature",
+              "name": "Fermentation Temperature",
+              "canonical_name": "fermenter.temperature",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "100.20.10.10",
+              "is_required": true,
+              "description": "Fermentation temperature \u2014 the most critical process variable. Affects yeast activity, ester production, and off-flavor formation."
+            },
+            {
+              "id": 20,
+              "code": "pressure",
+              "name": "Vessel Pressure",
+              "canonical_name": "fermenter.pressure",
+              "standard_unit": "psi",
+              "data_type": "Double",
+              "dib_tag_id": "100.20.10.20",
+              "is_required": false,
+              "description": "CO2 pressure inside the fermenter. Used for natural carbonation control."
+            },
+            {
+              "id": 30,
+              "code": "gravity",
+              "name": "Specific Gravity",
+              "canonical_name": "fermenter.gravity",
+              "standard_unit": "SG",
+              "data_type": "Double",
+              "dib_tag_id": "100.20.10.30",
+              "is_required": false,
+              "description": "Specific gravity indicating sugar content. Decreases during fermentation; tracks progress and calculates ABV."
+            },
+            {
+              "id": 40,
+              "code": "ph",
+              "name": "pH",
+              "canonical_name": "fermenter.ph",
+              "standard_unit": "pH",
+              "data_type": "Double",
+              "dib_tag_id": "100.20.10.40",
+              "is_required": false,
+              "description": "Wort/must pH. Affects enzyme activity during mashing and yeast health during fermentation."
+            },
+            {
+              "id": 50,
+              "code": "fill_level",
+              "name": "Fill Level",
+              "canonical_name": "fermenter.fill_level",
+              "standard_unit": "%",
+              "data_type": "Double",
+              "dib_tag_id": "100.20.10.50",
+              "is_required": false,
+              "description": "Vessel fill level as a percentage. Used for batch yield tracking."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "code": "pasteurization",
+      "name": "Pasteurization",
+      "description": "Heat treatment systems that destroy pathogens in liquid food products while preserving quality.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "htst-pasteurizer",
+          "name": "HTST Pasteurizer",
+          "dib_id": "100.30.10",
+          "description": "High-temperature short-time (HTST) pasteurizer for continuous liquid food processing. Regulatory compliance requires monitoring of holding tube temperature and flow diversion.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "holding_temp",
+              "name": "Holding Tube Temperature",
+              "canonical_name": "htst.holding_temp",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "100.30.10.10",
+              "is_required": true,
+              "description": "Temperature in the holding tube. Must meet regulatory minimum (161\u00b0F for 15 sec for HTST milk)."
+            },
+            {
+              "id": 20,
+              "code": "flow_rate",
+              "name": "Product Flow Rate",
+              "canonical_name": "htst.flow_rate",
+              "standard_unit": "gpm",
+              "data_type": "Double",
+              "dib_tag_id": "100.30.10.20",
+              "is_required": true,
+              "description": "Product flow rate. Determines holding time in the holding tube."
+            },
+            {
+              "id": 30,
+              "code": "fdd_status",
+              "name": "Flow Diversion Device",
+              "canonical_name": "htst.fdd_status",
+              "standard_unit": "Boolean",
+              "data_type": "Boolean",
+              "dib_tag_id": "100.30.10.30",
+              "is_required": true,
+              "description": "Flow diversion valve status. Diverts under-processed product when temp is below minimum."
+            },
+            {
+              "id": 40,
+              "code": "inlet_temp",
+              "name": "Raw Product Inlet Temp",
+              "canonical_name": "htst.inlet_temp",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "100.30.10.40",
+              "is_required": false,
+              "description": "Incoming raw product temperature."
+            },
+            {
+              "id": 50,
+              "code": "discharge_temp",
+              "name": "Discharge Temperature",
+              "canonical_name": "htst.discharge_temp",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "100.30.10.50",
+              "is_required": false,
+              "description": "Pasteurized product temperature at discharge."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "code": "cip",
+      "name": "CIP (Clean-In-Place) Systems",
+      "description": "Automated sanitation systems that clean process equipment in place without disassembly, critical for food safety compliance.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "cip-system",
+          "name": "CIP System",
+          "dib_id": "100.40.10",
+          "description": "Automated cleaning system circulating caustic, acid, and rinse solutions through process equipment. Monitoring ensures sanitation efficacy and chemical concentrations.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "temperature",
+              "name": "Solution Temperature",
+              "canonical_name": "cip.temperature",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "100.40.10.10",
+              "is_required": true,
+              "description": "Cleaning solution temperature. Minimum temps required for effective sanitation (typically 160\u00b0F for hot CIP)."
+            },
+            {
+              "id": 20,
+              "code": "flow_rate",
+              "name": "Flow Rate",
+              "canonical_name": "cip.flow_rate",
+              "standard_unit": "gpm",
+              "data_type": "Double",
+              "dib_tag_id": "100.40.10.20",
+              "is_required": true,
+              "description": "Solution flow rate ensuring adequate turbulence for mechanical cleaning action."
+            },
+            {
+              "id": 30,
+              "code": "conductivity",
+              "name": "Conductivity",
+              "canonical_name": "cip.conductivity",
+              "standard_unit": "mS/cm",
+              "data_type": "Double",
+              "dib_tag_id": "100.40.10.30",
+              "is_required": false,
+              "description": "Solution conductivity used to verify chemical concentration and detect phase transitions."
+            },
+            {
+              "id": 40,
+              "code": "pressure",
+              "name": "Supply Pressure",
+              "canonical_name": "cip.pressure",
+              "standard_unit": "psi",
+              "data_type": "Double",
+              "dib_tag_id": "100.40.10.40",
+              "is_required": false,
+              "description": "CIP supply pressure ensuring adequate flow to all cleaning points."
+            },
+            {
+              "id": 50,
+              "code": "phase",
+              "name": "CIP Phase",
+              "canonical_name": "cip.phase",
+              "standard_unit": "String",
+              "data_type": "String",
+              "dib_tag_id": "100.40.10.50",
+              "is_required": false,
+              "description": "Current CIP cycle phase: pre-rinse, caustic wash, intermediate rinse, acid wash, final rinse."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

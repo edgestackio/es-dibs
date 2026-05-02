@@ -1,0 +1,217 @@
+{
+  "$schema": "https://raw.githubusercontent.com/edgestackio/es-dibs/main/registry/industry.schema.json",
+  "id": 50,
+  "code": "manufacturing",
+  "name": "Manufacturing & Industrial",
+  "description": "Discrete and process manufacturing, industrial utility systems, packaging, and quality control equipment.",
+  "sub_industries": [
+    {
+      "id": 10,
+      "code": "process-manufacturing",
+      "name": "Process Manufacturing",
+      "description": "Continuous process manufacturing including reactors, heat exchangers, and distillation equipment.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "reactor-vessel",
+          "name": "Reactor / Process Vessel",
+          "dib_id": "50.10.10",
+          "description": "Pressure vessel used for chemical or biological reactions. Primary monitoring focus is process safety and product quality control.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "temperature",
+              "name": "Process Temperature",
+              "canonical_name": "reactor.temperature",
+              "standard_unit": "degC",
+              "data_type": "Double",
+              "dib_tag_id": "50.10.10.10",
+              "is_required": true,
+              "description": "Reactor temperature. Primary process control variable affecting reaction rate and product quality."
+            },
+            {
+              "id": 20,
+              "code": "pressure",
+              "name": "Process Pressure",
+              "canonical_name": "reactor.pressure",
+              "standard_unit": "psi",
+              "data_type": "Double",
+              "dib_tag_id": "50.10.10.20",
+              "is_required": true,
+              "description": "Reactor pressure. Critical safety parameter; high pressure triggers relief devices."
+            },
+            {
+              "id": 30,
+              "code": "fill_level",
+              "name": "Fill Level",
+              "canonical_name": "reactor.fill_level",
+              "standard_unit": "%",
+              "data_type": "Double",
+              "dib_tag_id": "50.10.10.30",
+              "is_required": false,
+              "description": "Vessel fill level as a percentage of total volume."
+            },
+            {
+              "id": 40,
+              "code": "agitator_rpm",
+              "name": "Agitator Speed",
+              "canonical_name": "reactor.agitator_rpm",
+              "standard_unit": "rpm",
+              "data_type": "Double",
+              "dib_tag_id": "50.10.10.40",
+              "is_required": false,
+              "description": "Mixing agitator speed in RPM. Affects mixing efficiency and heat transfer."
+            },
+            {
+              "id": 50,
+              "code": "ph",
+              "name": "pH",
+              "canonical_name": "reactor.ph",
+              "standard_unit": "pH",
+              "data_type": "Double",
+              "dib_tag_id": "50.10.10.50",
+              "is_required": false,
+              "description": "Process pH. Controls reaction chemistry and product specification."
+            }
+          ]
+        },
+        {
+          "id": 20,
+          "code": "heat-exchanger",
+          "name": "Heat Exchanger",
+          "dib_id": "50.10.20",
+          "description": "Shell-and-tube or plate heat exchanger transferring thermal energy between two process streams.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "hot_inlet_temp",
+              "name": "Hot Side Inlet Temp",
+              "canonical_name": "hex.hot_inlet_temp",
+              "standard_unit": "degC",
+              "data_type": "Double",
+              "dib_tag_id": "50.10.20.10",
+              "is_required": true,
+              "description": "Temperature of the hot process fluid entering the exchanger."
+            },
+            {
+              "id": 20,
+              "code": "hot_outlet_temp",
+              "name": "Hot Side Outlet Temp",
+              "canonical_name": "hex.hot_outlet_temp",
+              "standard_unit": "degC",
+              "data_type": "Double",
+              "dib_tag_id": "50.10.20.20",
+              "is_required": true,
+              "description": "Temperature of the hot process fluid leaving the exchanger."
+            },
+            {
+              "id": 30,
+              "code": "cold_inlet_temp",
+              "name": "Cold Side Inlet Temp",
+              "canonical_name": "hex.cold_inlet_temp",
+              "standard_unit": "degC",
+              "data_type": "Double",
+              "dib_tag_id": "50.10.20.30",
+              "is_required": true,
+              "description": "Temperature of the cold process fluid entering the exchanger."
+            },
+            {
+              "id": 40,
+              "code": "cold_outlet_temp",
+              "name": "Cold Side Outlet Temp",
+              "canonical_name": "hex.cold_outlet_temp",
+              "standard_unit": "degC",
+              "data_type": "Double",
+              "dib_tag_id": "50.10.20.40",
+              "is_required": true,
+              "description": "Temperature of the cold process fluid leaving the exchanger."
+            },
+            {
+              "id": 50,
+              "code": "flow_rate",
+              "name": "Flow Rate",
+              "canonical_name": "hex.flow_rate",
+              "standard_unit": "gpm",
+              "data_type": "Double",
+              "dib_tag_id": "50.10.20.50",
+              "is_required": false,
+              "description": "Process fluid flow rate through the exchanger."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "code": "compressed-air",
+      "name": "Compressed Air / Industrial Utilities",
+      "description": "Industrial utility systems supplying compressed air, nitrogen, or other process gases to manufacturing equipment.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "air-compressor",
+          "name": "Air Compressor",
+          "dib_id": "50.20.10",
+          "description": "Industrial rotary screw or reciprocating air compressor supplying compressed air to pneumatic tools and process equipment.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "discharge_pressure",
+              "name": "Discharge Pressure",
+              "canonical_name": "air_comp.discharge_pressure",
+              "standard_unit": "psi",
+              "data_type": "Double",
+              "dib_tag_id": "50.20.10.10",
+              "is_required": true,
+              "description": "Compressed air discharge pressure. Drops when demand exceeds supply capacity."
+            },
+            {
+              "id": 20,
+              "code": "discharge_temp",
+              "name": "Discharge Temperature",
+              "canonical_name": "air_comp.discharge_temp",
+              "standard_unit": "degC",
+              "data_type": "Double",
+              "dib_tag_id": "50.20.10.20",
+              "is_required": true,
+              "description": "Compressed air temperature at discharge. High temps indicate cooling issues."
+            },
+            {
+              "id": 30,
+              "code": "power",
+              "name": "Power Consumption",
+              "canonical_name": "air_comp.power",
+              "standard_unit": "kW",
+              "data_type": "Double",
+              "dib_tag_id": "50.20.10.30",
+              "is_required": false,
+              "description": "Compressor motor power. Used for specific power (kW/scfm) efficiency tracking."
+            },
+            {
+              "id": 40,
+              "code": "flow_rate",
+              "name": "Flow Rate",
+              "canonical_name": "air_comp.flow_rate",
+              "standard_unit": "scfm",
+              "data_type": "Double",
+              "dib_tag_id": "50.20.10.40",
+              "is_required": false,
+              "description": "Compressed air delivery rate in standard cubic feet per minute."
+            },
+            {
+              "id": 50,
+              "code": "run_hours",
+              "name": "Run Hours",
+              "canonical_name": "air_comp.run_hours",
+              "standard_unit": "h",
+              "data_type": "Double",
+              "dib_tag_id": "50.20.10.50",
+              "is_required": false,
+              "description": "Cumulative operating hours for maintenance scheduling."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

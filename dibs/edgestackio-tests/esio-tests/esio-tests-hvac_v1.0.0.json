@@ -1,0 +1,34 @@
+{
+  "$schema": "https://raw.githubusercontent.com/edgestackio/es-dibs/main/schemas/dib-definition.schema.json",
+  "dib_id": "40.10.10",
+  "dib_code": "ESIO-TESTS-HVAC",
+  "name": "ESIO Tests HVAC",
+  "version": "1.0.0",
+  "description": "EdgeStack.io HVAC test definition. Implements the Rooftop Unit (RTU) taxonomy entry.",
+  "industry": "buildings-facilities",
+  "is_shareable": false,
+  "tag_definitions": [
+    {
+      "dib_tag_id": "40.10.10.10",
+      "tag_code": "SUPPLY_AIR_TEMP",
+      "name": "Supply Air Temperature",
+      "canonical_name": "rtu.supply_air_temp",
+      "standard_unit": "degF",
+      "data_type": "Double",
+      "description": "Supply air temperature for HVAC test.",
+      "is_required": true,
+      "display_order": 10
+    },
+    {
+      "dib_tag_id": "40.10.10.60",
+      "tag_code": "FILTER_DP",
+      "name": "Filter Differential Pressure",
+      "canonical_name": "rtu.filter_dp",
+      "standard_unit": "inH2O",
+      "data_type": "Double",
+      "description": "Filter differential pressure for HVAC test.",
+      "is_required": false,
+      "display_order": 20
+    }
+  ]
+}

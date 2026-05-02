@@ -1,0 +1,206 @@
+{
+  "$schema": "https://raw.githubusercontent.com/edgestackio/es-dibs/main/registry/industry.schema.json",
+  "id": 80,
+  "code": "mining-extraction",
+  "name": "Mining & Extraction",
+  "description": "Surface and underground mining operations including material handling, dewatering, ventilation, and ore processing.",
+  "sub_industries": [
+    {
+      "id": 10,
+      "code": "surface-mining",
+      "name": "Surface Mining",
+      "description": "Open pit and surface mining equipment including conveyors, haul trucks, and dewatering systems.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "conveyor-system",
+          "name": "Conveyor System",
+          "dib_id": "80.10.10",
+          "description": "Belt conveyor transporting ore, coal, or overburden from excavation to processing or stockpile areas.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "belt_speed",
+              "name": "Belt Speed",
+              "canonical_name": "conveyor.belt_speed",
+              "standard_unit": "m/s",
+              "data_type": "Double",
+              "dib_tag_id": "80.10.10.10",
+              "is_required": true,
+              "description": "Belt surface speed in meters per second."
+            },
+            {
+              "id": 20,
+              "code": "motor_amps",
+              "name": "Drive Motor Current",
+              "canonical_name": "conveyor.motor_amps",
+              "standard_unit": "A",
+              "data_type": "Double",
+              "dib_tag_id": "80.10.10.20",
+              "is_required": true,
+              "description": "Drive motor current. High current with low speed indicates belt slip or overload."
+            },
+            {
+              "id": 30,
+              "code": "throughput",
+              "name": "Throughput",
+              "canonical_name": "conveyor.throughput",
+              "standard_unit": "t/h",
+              "data_type": "Double",
+              "dib_tag_id": "80.10.10.30",
+              "is_required": false,
+              "description": "Material throughput rate in tonnes per hour from belt scale."
+            },
+            {
+              "id": 40,
+              "code": "run_status",
+              "name": "Run Status",
+              "canonical_name": "conveyor.run_status",
+              "standard_unit": "Boolean",
+              "data_type": "Boolean",
+              "dib_tag_id": "80.10.10.40",
+              "is_required": false,
+              "description": "Conveyor running status."
+            },
+            {
+              "id": 50,
+              "code": "emergency_stop",
+              "name": "Emergency Stop",
+              "canonical_name": "conveyor.emergency_stop",
+              "standard_unit": "Boolean",
+              "data_type": "Boolean",
+              "dib_tag_id": "80.10.10.50",
+              "is_required": false,
+              "description": "E-stop pull cord or push button activation. Triggers immediate belt stop."
+            }
+          ]
+        },
+        {
+          "id": 20,
+          "code": "dewatering-pump",
+          "name": "Dewatering Pump",
+          "dib_id": "80.10.20",
+          "description": "High-volume pump removing groundwater from open pit or underground workings to maintain safe operating conditions.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "flow_rate",
+              "name": "Flow Rate",
+              "canonical_name": "dewater_pump.flow_rate",
+              "standard_unit": "gpm",
+              "data_type": "Double",
+              "dib_tag_id": "80.10.20.10",
+              "is_required": true,
+              "description": "Dewatering pump discharge flow rate."
+            },
+            {
+              "id": 20,
+              "code": "discharge_pressure",
+              "name": "Discharge Pressure",
+              "canonical_name": "dewater_pump.discharge_pressure",
+              "standard_unit": "psi",
+              "data_type": "Double",
+              "dib_tag_id": "80.10.20.20",
+              "is_required": true,
+              "description": "Pump discharge pressure indicating system head."
+            },
+            {
+              "id": 30,
+              "code": "motor_amps",
+              "name": "Motor Current",
+              "canonical_name": "dewater_pump.motor_amps",
+              "standard_unit": "A",
+              "data_type": "Double",
+              "dib_tag_id": "80.10.20.30",
+              "is_required": false,
+              "description": "Motor current draw."
+            },
+            {
+              "id": 40,
+              "code": "run_status",
+              "name": "Run Status",
+              "canonical_name": "dewater_pump.run_status",
+              "standard_unit": "Boolean",
+              "data_type": "Boolean",
+              "dib_tag_id": "80.10.20.40",
+              "is_required": false,
+              "description": "Pump running status."
+            },
+            {
+              "id": 50,
+              "code": "run_hours",
+              "name": "Run Hours",
+              "canonical_name": "dewater_pump.run_hours",
+              "standard_unit": "h",
+              "data_type": "Double",
+              "dib_tag_id": "80.10.20.50",
+              "is_required": false,
+              "description": "Cumulative pump run hours for maintenance scheduling."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "code": "underground-mining",
+      "name": "Underground Mining",
+      "description": "Underground mine monitoring including ventilation, atmospheric gas detection, and personnel tracking.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "ventilation-fan",
+          "name": "Ventilation Fan",
+          "dib_id": "80.20.10",
+          "description": "Primary or auxiliary ventilation fan providing fresh air to underground workings and diluting hazardous gases.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "airflow",
+              "name": "Airflow",
+              "canonical_name": "vent_fan.airflow",
+              "standard_unit": "cfm",
+              "data_type": "Double",
+              "dib_tag_id": "80.20.10.10",
+              "is_required": true,
+              "description": "Volume of air delivered in cubic feet per minute."
+            },
+            {
+              "id": 20,
+              "code": "static_pressure",
+              "name": "Static Pressure",
+              "canonical_name": "vent_fan.static_pressure",
+              "standard_unit": "inH2O",
+              "data_type": "Double",
+              "dib_tag_id": "80.20.10.20",
+              "is_required": true,
+              "description": "Fan static pressure indicating resistance in the ventilation circuit."
+            },
+            {
+              "id": 30,
+              "code": "motor_amps",
+              "name": "Motor Current",
+              "canonical_name": "vent_fan.motor_amps",
+              "standard_unit": "A",
+              "data_type": "Double",
+              "dib_tag_id": "80.20.10.30",
+              "is_required": false,
+              "description": "Fan motor current draw."
+            },
+            {
+              "id": 40,
+              "code": "run_status",
+              "name": "Run Status",
+              "canonical_name": "vent_fan.run_status",
+              "standard_unit": "Boolean",
+              "data_type": "Boolean",
+              "dib_tag_id": "80.20.10.40",
+              "is_required": false,
+              "description": "Fan operational status."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

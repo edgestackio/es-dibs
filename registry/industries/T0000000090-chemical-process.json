@@ -1,0 +1,214 @@
+{
+  "$schema": "https://raw.githubusercontent.com/edgestackio/es-dibs/main/registry/industry.schema.json",
+  "id": 90,
+  "code": "chemical-process",
+  "name": "Chemical & Process",
+  "description": "Bulk chemical storage and handling, reactor systems, heat transfer equipment, distillation, and process safety monitoring.",
+  "sub_industries": [
+    {
+      "id": 10,
+      "code": "chemical-storage",
+      "name": "Chemical Storage & Handling",
+      "description": "Bulk storage tanks and transfer systems for hazardous and non-hazardous chemical feedstocks and products.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "chemical-storage-tank",
+          "name": "Chemical Storage Tank",
+          "dib_id": "90.10.10",
+          "description": "Fixed-roof or floating-roof tank storing liquid chemical feedstocks or products. Process safety monitoring is critical due to hazardous material risk.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "level",
+              "name": "Level",
+              "canonical_name": "chem_tank.level",
+              "standard_unit": "ft",
+              "data_type": "Double",
+              "dib_tag_id": "90.10.10.10",
+              "is_required": true,
+              "description": "Liquid level measured from tank bottom."
+            },
+            {
+              "id": 20,
+              "code": "temperature",
+              "name": "Temperature",
+              "canonical_name": "chem_tank.temperature",
+              "standard_unit": "degC",
+              "data_type": "Double",
+              "dib_tag_id": "90.10.10.20",
+              "is_required": true,
+              "description": "Liquid temperature. Critical for products with narrow safe operating temperature ranges."
+            },
+            {
+              "id": 30,
+              "code": "pressure",
+              "name": "Vapor Pressure",
+              "canonical_name": "chem_tank.pressure",
+              "standard_unit": "psi",
+              "data_type": "Double",
+              "dib_tag_id": "90.10.10.30",
+              "is_required": true,
+              "description": "Tank vapor space pressure. High pressure on atmospheric tanks indicates vent blockage or exothermic reaction."
+            },
+            {
+              "id": 40,
+              "code": "volume",
+              "name": "Volume",
+              "canonical_name": "chem_tank.volume",
+              "standard_unit": "gal",
+              "data_type": "Double",
+              "dib_tag_id": "90.10.10.40",
+              "is_required": false,
+              "description": "Calculated liquid volume in gallons."
+            },
+            {
+              "id": 50,
+              "code": "leak_detector",
+              "name": "Leak Detector",
+              "canonical_name": "chem_tank.leak_detector",
+              "standard_unit": "Boolean",
+              "data_type": "Boolean",
+              "dib_tag_id": "90.10.10.50",
+              "is_required": false,
+              "description": "Secondary containment leak sensor. True indicates liquid detected in berm."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "code": "reactors-vessels",
+      "name": "Reactors & Pressure Vessels",
+      "description": "Pressure vessels, reactors, and process columns operating above atmospheric pressure.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "pressure-vessel",
+          "name": "Pressure Vessel",
+          "dib_id": "90.20.10",
+          "description": "ASME-rated pressure vessel used in chemical processing. Process safety monitoring centers on pressure and temperature relative to design limits.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "pressure",
+              "name": "Operating Pressure",
+              "canonical_name": "pressure_vessel.pressure",
+              "standard_unit": "psi",
+              "data_type": "Double",
+              "dib_tag_id": "90.20.10.10",
+              "is_required": true,
+              "description": "Vessel operating pressure. Must remain below MAWP."
+            },
+            {
+              "id": 20,
+              "code": "temperature",
+              "name": "Operating Temperature",
+              "canonical_name": "pressure_vessel.temperature",
+              "standard_unit": "degC",
+              "data_type": "Double",
+              "dib_tag_id": "90.20.10.20",
+              "is_required": true,
+              "description": "Vessel operating temperature. Affects material yield strength and design pressure."
+            },
+            {
+              "id": 30,
+              "code": "fill_level",
+              "name": "Fill Level",
+              "canonical_name": "pressure_vessel.fill_level",
+              "standard_unit": "%",
+              "data_type": "Double",
+              "dib_tag_id": "90.20.10.30",
+              "is_required": false,
+              "description": "Vessel fill level as a percentage of total volume."
+            },
+            {
+              "id": 40,
+              "code": "relief_valve",
+              "name": "Relief Valve Status",
+              "canonical_name": "pressure_vessel.relief_valve",
+              "standard_unit": "Boolean",
+              "data_type": "Boolean",
+              "dib_tag_id": "90.20.10.40",
+              "is_required": false,
+              "description": "Pressure relief valve open status. Activation indicates overpressure event."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "code": "heat-transfer",
+      "name": "Heat Transfer",
+      "description": "Industrial heat exchangers, condensers, and reboilers used in chemical and refining processes.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "shell-tube-heat-exchanger",
+          "name": "Shell & Tube Heat Exchanger",
+          "dib_id": "90.30.10",
+          "description": "Shell-and-tube heat exchanger transferring heat between two process streams. Fouling monitoring via differential pressure and temperature approach.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "shell_inlet_temp",
+              "name": "Shell Side Inlet Temp",
+              "canonical_name": "hex.shell_inlet_temp",
+              "standard_unit": "degC",
+              "data_type": "Double",
+              "dib_tag_id": "90.30.10.10",
+              "is_required": true,
+              "description": "Shell side fluid temperature at inlet."
+            },
+            {
+              "id": 20,
+              "code": "shell_outlet_temp",
+              "name": "Shell Side Outlet Temp",
+              "canonical_name": "hex.shell_outlet_temp",
+              "standard_unit": "degC",
+              "data_type": "Double",
+              "dib_tag_id": "90.30.10.20",
+              "is_required": true,
+              "description": "Shell side fluid temperature at outlet."
+            },
+            {
+              "id": 30,
+              "code": "tube_inlet_temp",
+              "name": "Tube Side Inlet Temp",
+              "canonical_name": "hex.tube_inlet_temp",
+              "standard_unit": "degC",
+              "data_type": "Double",
+              "dib_tag_id": "90.30.10.30",
+              "is_required": true,
+              "description": "Tube side fluid temperature at inlet."
+            },
+            {
+              "id": 40,
+              "code": "tube_outlet_temp",
+              "name": "Tube Side Outlet Temp",
+              "canonical_name": "hex.tube_outlet_temp",
+              "standard_unit": "degC",
+              "data_type": "Double",
+              "dib_tag_id": "90.30.10.40",
+              "is_required": true,
+              "description": "Tube side fluid temperature at outlet."
+            },
+            {
+              "id": 50,
+              "code": "differential_pressure",
+              "name": "Differential Pressure",
+              "canonical_name": "hex.differential_pressure",
+              "standard_unit": "psi",
+              "data_type": "Double",
+              "dib_tag_id": "90.30.10.50",
+              "is_required": false,
+              "description": "Shell side pressure drop. Increasing DP indicates fouling buildup."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,383 @@
+{
+  "$schema": "https://raw.githubusercontent.com/edgestackio/es-dibs/main/registry/industry.schema.json",
+  "id": 30,
+  "code": "power-utilities",
+  "name": "Power & Utilities",
+  "description": "Electricity generation from conventional and renewable sources, transmission and distribution infrastructure, and battery energy storage systems.",
+  "sub_industries": [
+    {
+      "id": 10,
+      "code": "generation-conventional",
+      "name": "Generation \u2014 Conventional",
+      "description": "Power generation from natural gas, diesel gensets, and backup generator applications.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "generator",
+          "name": "Generator / Genset",
+          "dib_id": "30.10.10",
+          "description": "Reciprocating engine or turbine-driven generator for primary or backup power generation.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "output_kw",
+              "name": "Active Power Output",
+              "canonical_name": "generator.output_kw",
+              "standard_unit": "kW",
+              "data_type": "Double",
+              "dib_tag_id": "30.10.10.10",
+              "is_required": true,
+              "description": "Real power output in kilowatts."
+            },
+            {
+              "id": 20,
+              "code": "voltage_l1_l2",
+              "name": "Line Voltage L1-L2",
+              "canonical_name": "generator.voltage_l1_l2",
+              "standard_unit": "V",
+              "data_type": "Double",
+              "dib_tag_id": "30.10.10.20",
+              "is_required": true,
+              "description": "Line-to-line voltage between phases L1 and L2."
+            },
+            {
+              "id": 30,
+              "code": "frequency",
+              "name": "Frequency",
+              "canonical_name": "generator.frequency",
+              "standard_unit": "Hz",
+              "data_type": "Double",
+              "dib_tag_id": "30.10.10.30",
+              "is_required": true,
+              "description": "Generator output frequency. Should be 60 Hz (US) or 50 Hz (international)."
+            },
+            {
+              "id": 40,
+              "code": "power_factor",
+              "name": "Power Factor",
+              "canonical_name": "generator.power_factor",
+              "standard_unit": "%",
+              "data_type": "Double",
+              "dib_tag_id": "30.10.10.40",
+              "is_required": false,
+              "description": "Ratio of real power to apparent power. Low PF indicates inductive loading."
+            },
+            {
+              "id": 50,
+              "code": "run_hours",
+              "name": "Run Hours",
+              "canonical_name": "generator.run_hours",
+              "standard_unit": "h",
+              "data_type": "Double",
+              "dib_tag_id": "30.10.10.50",
+              "is_required": false,
+              "description": "Cumulative engine run hours for maintenance scheduling."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "code": "generation-solar",
+      "name": "Generation \u2014 Solar PV",
+      "description": "Photovoltaic solar power generation including string and central inverters, weather monitoring, and solar tracker systems.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "string-inverter",
+          "name": "String Inverter",
+          "dib_id": "30.20.10",
+          "description": "Converts DC power from a string of solar panels to grid-quality AC power.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "ac_power",
+              "name": "AC Power Output",
+              "canonical_name": "inverter.ac_power",
+              "standard_unit": "kW",
+              "data_type": "Double",
+              "dib_tag_id": "30.20.10.10",
+              "is_required": true,
+              "description": "AC real power output in kilowatts."
+            },
+            {
+              "id": 20,
+              "code": "dc_voltage",
+              "name": "DC Input Voltage",
+              "canonical_name": "inverter.dc_voltage",
+              "standard_unit": "V",
+              "data_type": "Double",
+              "dib_tag_id": "30.20.10.20",
+              "is_required": true,
+              "description": "DC voltage from the solar string. Varies with irradiance and temperature."
+            },
+            {
+              "id": 30,
+              "code": "dc_current",
+              "name": "DC Input Current",
+              "canonical_name": "inverter.dc_current",
+              "standard_unit": "A",
+              "data_type": "Double",
+              "dib_tag_id": "30.20.10.30",
+              "is_required": true,
+              "description": "DC current from the solar string."
+            },
+            {
+              "id": 40,
+              "code": "ac_voltage",
+              "name": "AC Output Voltage",
+              "canonical_name": "inverter.ac_voltage",
+              "standard_unit": "V",
+              "data_type": "Double",
+              "dib_tag_id": "30.20.10.40",
+              "is_required": false,
+              "description": "AC grid-side voltage."
+            },
+            {
+              "id": 50,
+              "code": "efficiency",
+              "name": "Efficiency",
+              "canonical_name": "inverter.efficiency",
+              "standard_unit": "%",
+              "data_type": "Double",
+              "dib_tag_id": "30.20.10.50",
+              "is_required": false,
+              "description": "Conversion efficiency (AC out / DC in). Drops at low loading or high temperatures."
+            },
+            {
+              "id": 60,
+              "code": "temperature",
+              "name": "Inverter Temperature",
+              "canonical_name": "inverter.temperature",
+              "standard_unit": "degC",
+              "data_type": "Double",
+              "dib_tag_id": "30.20.10.60",
+              "is_required": false,
+              "description": "Internal inverter temperature. High temps cause derating or shutdown."
+            }
+          ]
+        },
+        {
+          "id": 20,
+          "code": "weather-station",
+          "name": "Weather Station",
+          "dib_id": "30.20.20",
+          "description": "On-site meteorological monitoring for solar resource assessment and performance ratio calculations.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "irradiance",
+              "name": "Plane-of-Array Irradiance",
+              "canonical_name": "weather.irradiance",
+              "standard_unit": "W/m2",
+              "data_type": "Double",
+              "dib_tag_id": "30.20.20.10",
+              "is_required": true,
+              "description": "Solar irradiance in the plane of the array. Primary driver of generation output."
+            },
+            {
+              "id": 20,
+              "code": "ambient_temp",
+              "name": "Ambient Temperature",
+              "canonical_name": "weather.ambient_temp",
+              "standard_unit": "degC",
+              "data_type": "Double",
+              "dib_tag_id": "30.20.20.20",
+              "is_required": true,
+              "description": "Air temperature at the site. Used for performance ratio calculations."
+            },
+            {
+              "id": 30,
+              "code": "panel_temp",
+              "name": "Module Temperature",
+              "canonical_name": "weather.panel_temp",
+              "standard_unit": "degC",
+              "data_type": "Double",
+              "dib_tag_id": "30.20.20.30",
+              "is_required": false,
+              "description": "Solar panel surface temperature. High temps reduce voltage and output power."
+            },
+            {
+              "id": 40,
+              "code": "wind_speed",
+              "name": "Wind Speed",
+              "canonical_name": "weather.wind_speed",
+              "standard_unit": "m/s",
+              "data_type": "Double",
+              "dib_tag_id": "30.20.20.40",
+              "is_required": false,
+              "description": "Wind speed for tracker stow decisions and soiling analysis."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "code": "generation-wind",
+      "name": "Generation \u2014 Wind",
+      "description": "Wind turbine generation monitoring including rotor, nacelle, and electrical systems.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "wind-turbine",
+          "name": "Wind Turbine",
+          "dib_id": "30.30.10",
+          "description": "Horizontal-axis wind turbine monitoring for performance optimization and predictive maintenance.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "wind_speed",
+              "name": "Wind Speed",
+              "canonical_name": "turbine.wind_speed",
+              "standard_unit": "m/s",
+              "data_type": "Double",
+              "dib_tag_id": "30.30.10.10",
+              "is_required": true,
+              "description": "Hub-height wind speed. Primary input to power curve analysis."
+            },
+            {
+              "id": 20,
+              "code": "rotor_rpm",
+              "name": "Rotor RPM",
+              "canonical_name": "turbine.rotor_rpm",
+              "standard_unit": "rpm",
+              "data_type": "Double",
+              "dib_tag_id": "30.30.10.20",
+              "is_required": true,
+              "description": "Main rotor rotational speed."
+            },
+            {
+              "id": 30,
+              "code": "power_output",
+              "name": "Power Output",
+              "canonical_name": "turbine.power_output",
+              "standard_unit": "kW",
+              "data_type": "Double",
+              "dib_tag_id": "30.30.10.30",
+              "is_required": true,
+              "description": "Active power output in kilowatts."
+            },
+            {
+              "id": 40,
+              "code": "nacelle_temp",
+              "name": "Nacelle Temp",
+              "canonical_name": "turbine.nacelle_temp",
+              "standard_unit": "degC",
+              "data_type": "Double",
+              "dib_tag_id": "30.30.10.40",
+              "is_required": false,
+              "description": "Nacelle internal temperature. High temps indicate cooling system issues."
+            },
+            {
+              "id": 50,
+              "code": "blade_pitch",
+              "name": "Blade Pitch",
+              "canonical_name": "turbine.blade_pitch",
+              "standard_unit": "deg",
+              "data_type": "Double",
+              "dib_tag_id": "30.30.10.50",
+              "is_required": false,
+              "description": "Blade pitch angle in degrees. Controls rotor speed and power output."
+            },
+            {
+              "id": 60,
+              "code": "yaw_position",
+              "name": "Yaw Position",
+              "canonical_name": "turbine.yaw_position",
+              "standard_unit": "deg",
+              "data_type": "Double",
+              "dib_tag_id": "30.30.10.60",
+              "is_required": false,
+              "description": "Nacelle yaw angle relative to north. Tracks wind direction."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "code": "bess",
+      "name": "Battery Energy Storage (BESS)",
+      "description": "Grid-scale battery energy storage systems for peak shaving, frequency regulation, and renewable energy integration.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "battery-system",
+          "name": "Battery System",
+          "dib_id": "30.50.10",
+          "description": "Battery energy storage system rack or string. Monitored for state of charge, electrical parameters, and thermal management.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "state_of_charge",
+              "name": "State of Charge",
+              "canonical_name": "bess.state_of_charge",
+              "standard_unit": "%",
+              "data_type": "Double",
+              "dib_tag_id": "30.50.10.10",
+              "is_required": true,
+              "description": "Available energy as a percentage of rated capacity."
+            },
+            {
+              "id": 20,
+              "code": "voltage",
+              "name": "Terminal Voltage",
+              "canonical_name": "bess.voltage",
+              "standard_unit": "V",
+              "data_type": "Double",
+              "dib_tag_id": "30.50.10.20",
+              "is_required": true,
+              "description": "Battery terminal voltage."
+            },
+            {
+              "id": 30,
+              "code": "current",
+              "name": "Current",
+              "canonical_name": "bess.current",
+              "standard_unit": "A",
+              "data_type": "Double",
+              "dib_tag_id": "30.50.10.30",
+              "is_required": true,
+              "description": "Charge/discharge current. Positive = charging, negative = discharging."
+            },
+            {
+              "id": 40,
+              "code": "temperature",
+              "name": "Cell Temperature",
+              "canonical_name": "bess.temperature",
+              "standard_unit": "degC",
+              "data_type": "Double",
+              "dib_tag_id": "30.50.10.40",
+              "is_required": true,
+              "description": "Battery cell temperature. Thermal runaway risk above manufacturer thresholds."
+            },
+            {
+              "id": 50,
+              "code": "power_kw",
+              "name": "Power",
+              "canonical_name": "bess.power_kw",
+              "standard_unit": "kW",
+              "data_type": "Double",
+              "dib_tag_id": "30.50.10.50",
+              "is_required": false,
+              "description": "Instantaneous charge/discharge power in kilowatts."
+            },
+            {
+              "id": 60,
+              "code": "health_percent",
+              "name": "State of Health",
+              "canonical_name": "bess.health_percent",
+              "standard_unit": "%",
+              "data_type": "Double",
+              "dib_tag_id": "30.50.10.60",
+              "is_required": false,
+              "description": "Battery health as a percentage of original rated capacity. Degrades over charge cycles."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,891 @@
+{
+  "$schema": "https://raw.githubusercontent.com/edgestackio/es-dibs/main/registry/industry.schema.json",
+  "id": 10,
+  "code": "oil-gas",
+  "name": "Oil & Gas",
+  "description": "Upstream exploration and production, midstream transportation and storage, and downstream refining and distribution of crude oil and natural gas.",
+  "sub_industries": [
+    {
+      "id": 10,
+      "code": "upstream-wellhead",
+      "name": "Upstream \u2014 Wellhead",
+      "description": "Equipment at the wellhead assembly monitoring production from individual wells, including Christmas trees, chokes, and wellhead controllers.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "wellhead-controller",
+          "name": "Wellhead Controller",
+          "dib_id": "10.10.10",
+          "description": "RTU or controller monitoring the wellhead assembly. Measures tubing and casing pressures, temperature, choke position, and production flow rate.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "tubing_pressure",
+              "name": "Tubing Pressure",
+              "canonical_name": "wellhead.tubing_pressure",
+              "standard_unit": "psi",
+              "data_type": "Double",
+              "dib_tag_id": "10.10.10.10",
+              "is_required": true,
+              "description": "Pressure in the production tubing string. Primary indicator of well productivity and drawdown."
+            },
+            {
+              "id": 20,
+              "code": "casing_pressure",
+              "name": "Casing Pressure",
+              "canonical_name": "wellhead.casing_pressure",
+              "standard_unit": "psi",
+              "data_type": "Double",
+              "dib_tag_id": "10.10.10.20",
+              "is_required": true,
+              "description": "Pressure in the annular space between tubing and casing. Indicates gas lift operation, casing gas production, or integrity issues."
+            },
+            {
+              "id": 30,
+              "code": "temperature",
+              "name": "Wellhead Temperature",
+              "canonical_name": "wellhead.temperature",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "10.10.10.30",
+              "is_required": false,
+              "description": "Flowing wellhead temperature used for fluid property calculations and hydrate risk assessment."
+            },
+            {
+              "id": 40,
+              "code": "choke_position",
+              "name": "Choke Position",
+              "canonical_name": "wellhead.choke_position",
+              "standard_unit": "%",
+              "data_type": "Double",
+              "dib_tag_id": "10.10.10.40",
+              "is_required": false,
+              "description": "Position of the production choke valve as a percentage of full open. Controls well flow rate."
+            },
+            {
+              "id": 50,
+              "code": "flow_rate",
+              "name": "Flow Rate",
+              "canonical_name": "wellhead.flow_rate",
+              "standard_unit": "Mcfd",
+              "data_type": "Double",
+              "dib_tag_id": "10.10.10.50",
+              "is_required": false,
+              "description": "Gas production rate in thousand cubic feet per day at standard conditions."
+            },
+            {
+              "id": 60,
+              "code": "run_status",
+              "name": "Run Status",
+              "canonical_name": "wellhead.run_status",
+              "standard_unit": "Boolean",
+              "data_type": "Boolean",
+              "dib_tag_id": "10.10.10.60",
+              "is_required": false,
+              "description": "Well on/off production status."
+            }
+          ]
+        },
+        {
+          "id": 20,
+          "code": "christmas-tree",
+          "name": "Christmas Tree",
+          "dib_id": "10.10.20",
+          "description": "The assembly of valves, spools, and fittings at the top of the wellbore. Monitors annulus pressure, wellhead pressure, and valve states.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "annulus_pressure",
+              "name": "Annulus Pressure",
+              "canonical_name": "xmas_tree.annulus_pressure",
+              "standard_unit": "psi",
+              "data_type": "Double",
+              "dib_tag_id": "10.10.20.10",
+              "is_required": true,
+              "description": "Pressure in the annular space between the production tubing and the casing string."
+            },
+            {
+              "id": 20,
+              "code": "wellhead_pressure",
+              "name": "Wellhead Pressure",
+              "canonical_name": "xmas_tree.wellhead_pressure",
+              "standard_unit": "psi",
+              "data_type": "Double",
+              "dib_tag_id": "10.10.20.20",
+              "is_required": true,
+              "description": "Flowing wellhead pressure at the top of the production tubing string."
+            },
+            {
+              "id": 30,
+              "code": "master_valve",
+              "name": "Master Valve Position",
+              "canonical_name": "xmas_tree.master_valve",
+              "standard_unit": "Boolean",
+              "data_type": "Boolean",
+              "dib_tag_id": "10.10.20.30",
+              "is_required": false,
+              "description": "Open/closed status of the master gate valve at the base of the Christmas tree."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "code": "tank-battery",
+      "name": "Upstream \u2014 Tank Battery / Storage",
+      "description": "Production storage and separation equipment at the lease level, including oil tanks, produced water tanks, separators, treaters, and gun barrels.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "oil-storage-tank",
+          "name": "Oil Storage Tank",
+          "dib_id": "10.20.10",
+          "description": "Atmospheric storage tank for produced crude oil awaiting transport. Monitored for level, temperature, and volume. Net volume is temperature-corrected to 60\u00b0F base conditions.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "level",
+              "name": "Level",
+              "canonical_name": "tank.level",
+              "standard_unit": "ft",
+              "data_type": "Double",
+              "dib_tag_id": "10.20.10.10",
+              "is_required": true,
+              "description": "Fluid level measured from the tank bottom. Raw measurement before strapping table conversion."
+            },
+            {
+              "id": 20,
+              "code": "temperature",
+              "name": "Temperature",
+              "canonical_name": "tank.temperature",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "10.20.10.20",
+              "is_required": false,
+              "description": "Fluid temperature used for volume correction to 60\u00b0F base conditions (VCF calculation)."
+            },
+            {
+              "id": 30,
+              "code": "pressure",
+              "name": "Pressure",
+              "canonical_name": "tank.pressure",
+              "standard_unit": "psi",
+              "data_type": "Double",
+              "dib_tag_id": "10.20.10.30",
+              "is_required": false,
+              "description": "Tank vapor space pressure. Typically near atmospheric for open-top tanks; monitored on vapor-recovery units."
+            },
+            {
+              "id": 40,
+              "code": "net_volume",
+              "name": "Net Volume",
+              "canonical_name": "tank.net_volume",
+              "standard_unit": "bbl",
+              "data_type": "Double",
+              "dib_tag_id": "10.20.10.40",
+              "is_required": false,
+              "description": "Temperature-corrected net oil volume in barrels at 60\u00b0F base. Derived from level + strapping table + VCF."
+            },
+            {
+              "id": 50,
+              "code": "gross_volume",
+              "name": "Gross Volume",
+              "canonical_name": "tank.gross_volume",
+              "standard_unit": "bbl",
+              "data_type": "Double",
+              "dib_tag_id": "10.20.10.50",
+              "is_required": false,
+              "description": "Total tank volume at observed temperature, before correction."
+            },
+            {
+              "id": 60,
+              "code": "density",
+              "name": "Density (API Gravity)",
+              "canonical_name": "tank.density",
+              "standard_unit": "API",
+              "data_type": "Double",
+              "dib_tag_id": "10.20.10.60",
+              "is_required": false,
+              "description": "Crude oil API gravity used for VCF calculation and crude quality reporting."
+            }
+          ]
+        },
+        {
+          "id": 20,
+          "code": "produced-water-tank",
+          "name": "Produced Water Tank",
+          "dib_id": "10.20.20",
+          "description": "Storage tank for produced water (saltwater) separated from crude oil production. Monitored prior to disposal or reinjection.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "level",
+              "name": "Level",
+              "canonical_name": "water_tank.level",
+              "standard_unit": "ft",
+              "data_type": "Double",
+              "dib_tag_id": "10.20.20.10",
+              "is_required": true,
+              "description": "Fluid level in the produced water tank."
+            },
+            {
+              "id": 20,
+              "code": "temperature",
+              "name": "Temperature",
+              "canonical_name": "water_tank.temperature",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "10.20.20.20",
+              "is_required": false,
+              "description": "Produced water temperature."
+            },
+            {
+              "id": 30,
+              "code": "volume",
+              "name": "Volume",
+              "canonical_name": "water_tank.volume",
+              "standard_unit": "bbl",
+              "data_type": "Double",
+              "dib_tag_id": "10.20.20.30",
+              "is_required": false,
+              "description": "Calculated volume of produced water in barrels."
+            },
+            {
+              "id": 40,
+              "code": "salinity",
+              "name": "Salinity",
+              "canonical_name": "water_tank.salinity",
+              "standard_unit": "ppm",
+              "data_type": "Double",
+              "dib_tag_id": "10.20.20.40",
+              "is_required": false,
+              "description": "Total dissolved solids in parts per million. Used for disposal well compatibility and regulatory reporting."
+            }
+          ]
+        },
+        {
+          "id": 30,
+          "code": "three-phase-separator",
+          "name": "Three-Phase Separator",
+          "dib_id": "10.20.30",
+          "description": "Pressure vessel that separates wellstream into gas, oil, and water phases. The primary production separation device at the tank battery.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "inlet_pressure",
+              "name": "Inlet Pressure",
+              "canonical_name": "separator.inlet_pressure",
+              "standard_unit": "psi",
+              "data_type": "Double",
+              "dib_tag_id": "10.20.30.10",
+              "is_required": true,
+              "description": "Wellstream pressure at the separator inlet."
+            },
+            {
+              "id": 20,
+              "code": "outlet_pressure",
+              "name": "Outlet Pressure",
+              "canonical_name": "separator.outlet_pressure",
+              "standard_unit": "psi",
+              "data_type": "Double",
+              "dib_tag_id": "10.20.30.20",
+              "is_required": true,
+              "description": "Gas outlet pressure. Controls backpressure on the wellstream."
+            },
+            {
+              "id": 30,
+              "code": "temperature",
+              "name": "Operating Temperature",
+              "canonical_name": "separator.temperature",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "10.20.30.30",
+              "is_required": false,
+              "description": "Separator operating temperature affecting fluid viscosity and separation efficiency."
+            },
+            {
+              "id": 40,
+              "code": "liquid_level",
+              "name": "Liquid Level",
+              "canonical_name": "separator.liquid_level",
+              "standard_unit": "%",
+              "data_type": "Double",
+              "dib_tag_id": "10.20.30.40",
+              "is_required": false,
+              "description": "Oil/water interface level inside the separator as a percentage of vessel height."
+            },
+            {
+              "id": 50,
+              "code": "gas_rate",
+              "name": "Gas Rate",
+              "canonical_name": "separator.gas_rate",
+              "standard_unit": "Mcfd",
+              "data_type": "Double",
+              "dib_tag_id": "10.20.30.50",
+              "is_required": false,
+              "description": "Gas production rate leaving the separator in thousand cubic feet per day."
+            },
+            {
+              "id": 60,
+              "code": "oil_rate",
+              "name": "Oil Rate",
+              "canonical_name": "separator.oil_rate",
+              "standard_unit": "bbl/d",
+              "data_type": "Double",
+              "dib_tag_id": "10.20.30.60",
+              "is_required": false,
+              "description": "Oil production rate leaving the separator in barrels per day."
+            }
+          ]
+        },
+        {
+          "id": 40,
+          "code": "heater-treater",
+          "name": "Heater Treater",
+          "dib_id": "10.20.40",
+          "description": "Fired vessel that heats the wellstream to break oil/water emulsions. Used when production contains tight emulsions that won't separate by gravity alone.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "inlet_pressure",
+              "name": "Inlet Pressure",
+              "canonical_name": "treater.inlet_pressure",
+              "standard_unit": "psi",
+              "data_type": "Double",
+              "dib_tag_id": "10.20.40.10",
+              "is_required": true,
+              "description": "Wellstream pressure at the treater inlet."
+            },
+            {
+              "id": 20,
+              "code": "operating_temp",
+              "name": "Operating Temperature",
+              "canonical_name": "treater.operating_temp",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "10.20.40.20",
+              "is_required": true,
+              "description": "Treating temperature \u2014 typically 120\u2013160\u00b0F for crude emulsions."
+            },
+            {
+              "id": 30,
+              "code": "fire_tube_temp",
+              "name": "Fire Tube Temperature",
+              "canonical_name": "treater.fire_tube_temp",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "10.20.40.30",
+              "is_required": false,
+              "description": "Temperature at the fire tube surface. High temps indicate scale buildup or low liquid level."
+            },
+            {
+              "id": 40,
+              "code": "water_level",
+              "name": "Water Boot Level",
+              "canonical_name": "treater.water_level",
+              "standard_unit": "%",
+              "data_type": "Double",
+              "dib_tag_id": "10.20.40.40",
+              "is_required": false,
+              "description": "Level in the water boot used to control water dump valve."
+            },
+            {
+              "id": 50,
+              "code": "run_status",
+              "name": "Run Status",
+              "canonical_name": "treater.run_status",
+              "standard_unit": "Boolean",
+              "data_type": "Boolean",
+              "dib_tag_id": "10.20.40.50",
+              "is_required": false,
+              "description": "Heater treater operational status \u2014 burner firing."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "code": "artificial-lift",
+      "name": "Upstream \u2014 Artificial Lift",
+      "description": "Equipment used to increase fluid flow from wells that lack sufficient reservoir pressure to produce naturally, including rod pumps, ESPs, and gas lift systems.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "rod-pump",
+          "name": "Rod Pump (Pump Jack)",
+          "dib_id": "10.30.10",
+          "description": "Surface-driven reciprocating pump that lifts fluid from the wellbore via a sucker rod string. The most common artificial lift method in onshore oil production.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "strokes_per_minute",
+              "name": "Strokes Per Minute",
+              "canonical_name": "rod_pump.strokes_per_minute",
+              "standard_unit": "spm",
+              "data_type": "Double",
+              "dib_tag_id": "10.30.10.10",
+              "is_required": true,
+              "description": "Pumping speed in strokes per minute. Affects production rate and rod string fatigue."
+            },
+            {
+              "id": 20,
+              "code": "motor_amps",
+              "name": "Motor Current",
+              "canonical_name": "rod_pump.motor_amps",
+              "standard_unit": "A",
+              "data_type": "Double",
+              "dib_tag_id": "10.30.10.20",
+              "is_required": true,
+              "description": "Motor current draw. Abnormal patterns indicate pump-off, fluid pound, or mechanical issues."
+            },
+            {
+              "id": 30,
+              "code": "motor_runtime",
+              "name": "Motor Runtime",
+              "canonical_name": "rod_pump.motor_runtime",
+              "standard_unit": "h",
+              "data_type": "Double",
+              "dib_tag_id": "10.30.10.30",
+              "is_required": false,
+              "description": "Cumulative motor run hours for maintenance scheduling."
+            },
+            {
+              "id": 40,
+              "code": "load_up",
+              "name": "Peak Upstroke Load",
+              "canonical_name": "rod_pump.load_up",
+              "standard_unit": "lbs",
+              "data_type": "Double",
+              "dib_tag_id": "10.30.10.40",
+              "is_required": false,
+              "description": "Peak rod string load on the upstroke. Used for dynamometer card analysis."
+            },
+            {
+              "id": 50,
+              "code": "load_down",
+              "name": "Peak Downstroke Load",
+              "canonical_name": "rod_pump.load_down",
+              "standard_unit": "lbs",
+              "data_type": "Double",
+              "dib_tag_id": "10.30.10.50",
+              "is_required": false,
+              "description": "Peak rod string load on the downstroke."
+            },
+            {
+              "id": 60,
+              "code": "run_status",
+              "name": "Run Status",
+              "canonical_name": "rod_pump.run_status",
+              "standard_unit": "Boolean",
+              "data_type": "Boolean",
+              "dib_tag_id": "10.30.10.60",
+              "is_required": false,
+              "description": "Pump on/off status."
+            }
+          ]
+        },
+        {
+          "id": 20,
+          "code": "esp",
+          "name": "ESP (Electric Submersible Pump)",
+          "dib_id": "10.30.20",
+          "description": "Multi-stage centrifugal pump installed in the wellbore driven by a downhole electric motor. Used for high-volume liquid production.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "intake_pressure",
+              "name": "Pump Intake Pressure",
+              "canonical_name": "esp.intake_pressure",
+              "standard_unit": "psi",
+              "data_type": "Double",
+              "dib_tag_id": "10.30.20.10",
+              "is_required": true,
+              "description": "Pressure at the pump intake. Key indicator of drawdown and pump submergence."
+            },
+            {
+              "id": 20,
+              "code": "discharge_pressure",
+              "name": "Pump Discharge Pressure",
+              "canonical_name": "esp.discharge_pressure",
+              "standard_unit": "psi",
+              "data_type": "Double",
+              "dib_tag_id": "10.30.20.20",
+              "is_required": true,
+              "description": "Pressure at the pump discharge. Difference from intake indicates pump head generated."
+            },
+            {
+              "id": 30,
+              "code": "motor_temp",
+              "name": "Motor Temperature",
+              "canonical_name": "esp.motor_temp",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "10.30.20.30",
+              "is_required": true,
+              "description": "Downhole motor winding temperature. High temps trigger shutdown to prevent motor failure."
+            },
+            {
+              "id": 40,
+              "code": "motor_amps",
+              "name": "Motor Current",
+              "canonical_name": "esp.motor_amps",
+              "standard_unit": "A",
+              "data_type": "Double",
+              "dib_tag_id": "10.30.20.40",
+              "is_required": true,
+              "description": "Motor current draw at surface. Abnormal values indicate mechanical issues or gas interference."
+            },
+            {
+              "id": 50,
+              "code": "frequency",
+              "name": "Drive Frequency",
+              "canonical_name": "esp.frequency",
+              "standard_unit": "Hz",
+              "data_type": "Double",
+              "dib_tag_id": "10.30.20.50",
+              "is_required": false,
+              "description": "VFD output frequency controlling pump speed. Typically 40\u201370 Hz."
+            },
+            {
+              "id": 60,
+              "code": "run_status",
+              "name": "Run Status",
+              "canonical_name": "esp.run_status",
+              "standard_unit": "Boolean",
+              "data_type": "Boolean",
+              "dib_tag_id": "10.30.20.60",
+              "is_required": false,
+              "description": "ESP operational status."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "code": "compressor-station",
+      "name": "Midstream \u2014 Compressor Station",
+      "description": "Facilities that compress natural gas for pipeline transportation or gas lift injection.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "reciprocating-compressor",
+          "name": "Reciprocating Compressor",
+          "dib_id": "10.40.10",
+          "description": "Positive-displacement compressor using pistons driven by a crankshaft. Common in gathering systems and gas lift applications.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "suction_pressure",
+              "name": "Suction Pressure",
+              "canonical_name": "recip_comp.suction_pressure",
+              "standard_unit": "psi",
+              "data_type": "Double",
+              "dib_tag_id": "10.40.10.10",
+              "is_required": true,
+              "description": "Gas pressure at the compressor inlet."
+            },
+            {
+              "id": 20,
+              "code": "discharge_pressure",
+              "name": "Discharge Pressure",
+              "canonical_name": "recip_comp.discharge_pressure",
+              "standard_unit": "psi",
+              "data_type": "Double",
+              "dib_tag_id": "10.40.10.20",
+              "is_required": true,
+              "description": "Gas pressure at the compressor outlet."
+            },
+            {
+              "id": 30,
+              "code": "rpm",
+              "name": "Engine RPM",
+              "canonical_name": "recip_comp.rpm",
+              "standard_unit": "rpm",
+              "data_type": "Double",
+              "dib_tag_id": "10.40.10.30",
+              "is_required": true,
+              "description": "Engine or motor speed in revolutions per minute."
+            },
+            {
+              "id": 40,
+              "code": "oil_pressure",
+              "name": "Lube Oil Pressure",
+              "canonical_name": "recip_comp.oil_pressure",
+              "standard_unit": "psi",
+              "data_type": "Double",
+              "dib_tag_id": "10.40.10.40",
+              "is_required": true,
+              "description": "Lubrication oil pressure. Low oil pressure triggers emergency shutdown."
+            },
+            {
+              "id": 50,
+              "code": "cylinder_head_temp",
+              "name": "Cylinder Head Temp",
+              "canonical_name": "recip_comp.cylinder_head_temp",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "10.40.10.50",
+              "is_required": false,
+              "description": "Temperature at the cylinder head. High temps indicate valve failure or excessive compression ratio."
+            },
+            {
+              "id": 60,
+              "code": "vibration",
+              "name": "Vibration",
+              "canonical_name": "recip_comp.vibration",
+              "standard_unit": "in/s",
+              "data_type": "Double",
+              "dib_tag_id": "10.40.10.60",
+              "is_required": false,
+              "description": "Overall vibration velocity. Trend monitoring detects bearing wear and mechanical imbalance."
+            },
+            {
+              "id": 70,
+              "code": "run_hours",
+              "name": "Run Hours",
+              "canonical_name": "recip_comp.run_hours",
+              "standard_unit": "h",
+              "data_type": "Double",
+              "dib_tag_id": "10.40.10.70",
+              "is_required": false,
+              "description": "Cumulative operating hours for PM scheduling."
+            },
+            {
+              "id": 80,
+              "code": "load_percent",
+              "name": "Load %",
+              "canonical_name": "recip_comp.load_percent",
+              "standard_unit": "%",
+              "data_type": "Double",
+              "dib_tag_id": "10.40.10.80",
+              "is_required": false,
+              "description": "Percentage of rated capacity at which the compressor is operating."
+            }
+          ]
+        },
+        {
+          "id": 20,
+          "code": "centrifugal-compressor",
+          "name": "Centrifugal Compressor",
+          "dib_id": "10.40.20",
+          "description": "Dynamic compressor that imparts velocity to gas via rotating impellers. Used in high-volume pipeline and processing applications.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "suction_pressure",
+              "name": "Suction Pressure",
+              "canonical_name": "cent_comp.suction_pressure",
+              "standard_unit": "psi",
+              "data_type": "Double",
+              "dib_tag_id": "10.40.20.10",
+              "is_required": true,
+              "description": "Inlet gas pressure."
+            },
+            {
+              "id": 20,
+              "code": "discharge_pressure",
+              "name": "Discharge Pressure",
+              "canonical_name": "cent_comp.discharge_pressure",
+              "standard_unit": "psi",
+              "data_type": "Double",
+              "dib_tag_id": "10.40.20.20",
+              "is_required": true,
+              "description": "Outlet gas pressure."
+            },
+            {
+              "id": 30,
+              "code": "rpm",
+              "name": "Shaft RPM",
+              "canonical_name": "cent_comp.rpm",
+              "standard_unit": "rpm",
+              "data_type": "Double",
+              "dib_tag_id": "10.40.20.30",
+              "is_required": true,
+              "description": "Compressor shaft speed. Off-design speed causes surge or choke."
+            },
+            {
+              "id": 40,
+              "code": "bearing_temp",
+              "name": "Bearing Temperature",
+              "canonical_name": "cent_comp.bearing_temp",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "10.40.20.40",
+              "is_required": true,
+              "description": "Journal bearing temperature. Rising temps indicate lubrication failure or alignment issues."
+            },
+            {
+              "id": 50,
+              "code": "vibration",
+              "name": "Vibration",
+              "canonical_name": "cent_comp.vibration",
+              "standard_unit": "in/s",
+              "data_type": "Double",
+              "dib_tag_id": "10.40.20.50",
+              "is_required": true,
+              "description": "Shaft vibration amplitude. Critical parameter for rotating machinery health."
+            },
+            {
+              "id": 60,
+              "code": "power",
+              "name": "Power",
+              "canonical_name": "cent_comp.power",
+              "standard_unit": "kW",
+              "data_type": "Double",
+              "dib_tag_id": "10.40.20.60",
+              "is_required": false,
+              "description": "Shaft power consumption in kilowatts."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "code": "pipeline",
+      "name": "Midstream \u2014 Pipeline",
+      "description": "Transmission and gathering pipelines transporting crude oil, natural gas, or NGLs.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "pipeline-segment",
+          "name": "Pipeline Segment Monitor",
+          "dib_id": "10.50.10",
+          "description": "Monitoring point on a pipeline segment at block valve stations or taps. Measures pressure, flow, and temperature.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "inlet_pressure",
+              "name": "Inlet Pressure",
+              "canonical_name": "pipeline.inlet_pressure",
+              "standard_unit": "psi",
+              "data_type": "Double",
+              "dib_tag_id": "10.50.10.10",
+              "is_required": true,
+              "description": "Pipeline pressure at the upstream measurement point."
+            },
+            {
+              "id": 20,
+              "code": "outlet_pressure",
+              "name": "Outlet Pressure",
+              "canonical_name": "pipeline.outlet_pressure",
+              "standard_unit": "psi",
+              "data_type": "Double",
+              "dib_tag_id": "10.50.10.20",
+              "is_required": true,
+              "description": "Pipeline pressure at the downstream measurement point."
+            },
+            {
+              "id": 30,
+              "code": "flow_rate",
+              "name": "Flow Rate",
+              "canonical_name": "pipeline.flow_rate",
+              "standard_unit": "Mcfd",
+              "data_type": "Double",
+              "dib_tag_id": "10.50.10.30",
+              "is_required": false,
+              "description": "Gas flow rate through the segment in thousand cubic feet per day."
+            },
+            {
+              "id": 40,
+              "code": "temperature",
+              "name": "Gas Temperature",
+              "canonical_name": "pipeline.temperature",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "10.50.10.40",
+              "is_required": false,
+              "description": "Gas temperature. Affects density, compressibility, and hydrate formation risk."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "code": "metering",
+      "name": "Downstream \u2014 Metering / Fiscal",
+      "description": "Custody transfer and fiscal metering equipment measuring the quantity and quality of hydrocarbons changing ownership.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "flow-computer",
+          "name": "Flow Computer",
+          "dib_id": "10.60.10",
+          "description": "Electronic device that calculates corrected volumes from raw meter signals, pressure, and temperature. The official record for custody transfer.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "flow_rate",
+              "name": "Flow Rate",
+              "canonical_name": "meter.flow_rate",
+              "standard_unit": "Mcfd",
+              "data_type": "Double",
+              "dib_tag_id": "10.60.10.10",
+              "is_required": true,
+              "description": "Instantaneous gas flow rate at standard conditions."
+            },
+            {
+              "id": 20,
+              "code": "accumulated_volume",
+              "name": "Accumulated Volume",
+              "canonical_name": "meter.accumulated_volume",
+              "standard_unit": "Mcf",
+              "data_type": "Double",
+              "dib_tag_id": "10.60.10.20",
+              "is_required": true,
+              "description": "Total accumulated gas volume at standard conditions since last reset."
+            },
+            {
+              "id": 30,
+              "code": "static_pressure",
+              "name": "Static Pressure",
+              "canonical_name": "meter.static_pressure",
+              "standard_unit": "psi",
+              "data_type": "Double",
+              "dib_tag_id": "10.60.10.30",
+              "is_required": true,
+              "description": "Line static pressure used for volume correction to standard conditions."
+            },
+            {
+              "id": 40,
+              "code": "temperature",
+              "name": "Gas Temperature",
+              "canonical_name": "meter.temperature",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "10.60.10.40",
+              "is_required": true,
+              "description": "Gas temperature used for volume correction to standard conditions (60\u00b0F)."
+            },
+            {
+              "id": 50,
+              "code": "energy_content",
+              "name": "Energy Content",
+              "canonical_name": "meter.energy_content",
+              "standard_unit": "BTU/cf",
+              "data_type": "Double",
+              "dib_tag_id": "10.60.10.50",
+              "is_required": false,
+              "description": "Heating value of the gas in BTU per cubic foot. Used to calculate energy (MMBTU) for billing."
+            },
+            {
+              "id": 60,
+              "code": "meter_factor",
+              "name": "Meter Factor",
+              "canonical_name": "meter.meter_factor",
+              "standard_unit": "%",
+              "data_type": "Double",
+              "dib_tag_id": "10.60.10.60",
+              "is_required": false,
+              "description": "Correction factor from calibration. Values near 1.0 indicate a well-calibrated meter."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

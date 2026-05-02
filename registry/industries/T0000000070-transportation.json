@@ -1,0 +1,164 @@
+{
+  "$schema": "https://raw.githubusercontent.com/edgestackio/es-dibs/main/registry/industry.schema.json",
+  "id": 70,
+  "code": "transportation",
+  "name": "Transportation & Logistics",
+  "description": "Fleet vehicle telematics, rail monitoring, cold chain refrigeration, and fuel distribution systems.",
+  "sub_industries": [
+    {
+      "id": 10,
+      "code": "fleet-vehicle",
+      "name": "Fleet / Vehicle Telematics",
+      "description": "Mobile asset tracking and engine monitoring for commercial vehicles, trucks, and heavy equipment.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "vehicle-telemetry",
+          "name": "Vehicle Telemetry Unit",
+          "dib_id": "70.10.10",
+          "description": "OBD or CAN bus telematics device capturing vehicle engine, location, and operational data.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "speed",
+              "name": "Vehicle Speed",
+              "canonical_name": "vehicle.speed",
+              "standard_unit": "mph",
+              "data_type": "Double",
+              "dib_tag_id": "70.10.10.10",
+              "is_required": true,
+              "description": "Vehicle speed in miles per hour."
+            },
+            {
+              "id": 20,
+              "code": "engine_rpm",
+              "name": "Engine RPM",
+              "canonical_name": "vehicle.engine_rpm",
+              "standard_unit": "rpm",
+              "data_type": "Double",
+              "dib_tag_id": "70.10.10.20",
+              "is_required": false,
+              "description": "Engine rotational speed."
+            },
+            {
+              "id": 30,
+              "code": "fuel_level",
+              "name": "Fuel Level",
+              "canonical_name": "vehicle.fuel_level",
+              "standard_unit": "%",
+              "data_type": "Double",
+              "dib_tag_id": "70.10.10.30",
+              "is_required": false,
+              "description": "Fuel tank level as a percentage."
+            },
+            {
+              "id": 40,
+              "code": "engine_temp",
+              "name": "Engine Coolant Temp",
+              "canonical_name": "vehicle.engine_temp",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "70.10.10.40",
+              "is_required": false,
+              "description": "Engine coolant temperature. High temps trigger overheat warnings."
+            },
+            {
+              "id": 50,
+              "code": "odometer",
+              "name": "Odometer",
+              "canonical_name": "vehicle.odometer",
+              "standard_unit": "mi",
+              "data_type": "Double",
+              "dib_tag_id": "70.10.10.50",
+              "is_required": false,
+              "description": "Cumulative mileage for maintenance scheduling."
+            },
+            {
+              "id": 60,
+              "code": "idle_time",
+              "name": "Idle Time",
+              "canonical_name": "vehicle.idle_time",
+              "standard_unit": "h",
+              "data_type": "Double",
+              "dib_tag_id": "70.10.10.60",
+              "is_required": false,
+              "description": "Cumulative engine idle hours. Used for fuel waste and emissions reporting."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "code": "cold-chain",
+      "name": "Cold Chain / Refrigerated Transport",
+      "description": "Temperature-controlled transport and storage for perishable goods including refrigerated trailers.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "refrigerated-trailer",
+          "name": "Refrigerated Trailer",
+          "dib_id": "70.20.10",
+          "description": "Temperature-controlled transport trailer for perishable cargo. Regulatory compliance requires continuous temperature logging.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "cargo_temp_1",
+              "name": "Cargo Temp (Front)",
+              "canonical_name": "reefer.cargo_temp_front",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "70.20.10.10",
+              "is_required": true,
+              "description": "Cargo temperature at the front (bulkhead) of the trailer."
+            },
+            {
+              "id": 20,
+              "code": "cargo_temp_2",
+              "name": "Cargo Temp (Rear)",
+              "canonical_name": "reefer.cargo_temp_rear",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "70.20.10.20",
+              "is_required": true,
+              "description": "Cargo temperature at the rear doors. Differential indicates airflow issues."
+            },
+            {
+              "id": 30,
+              "code": "setpoint",
+              "name": "Temperature Setpoint",
+              "canonical_name": "reefer.setpoint",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "70.20.10.30",
+              "is_required": false,
+              "description": "Target temperature setpoint for the refrigeration unit."
+            },
+            {
+              "id": 40,
+              "code": "door_status",
+              "name": "Door Status",
+              "canonical_name": "reefer.door_status",
+              "standard_unit": "Boolean",
+              "data_type": "Boolean",
+              "dib_tag_id": "70.20.10.40",
+              "is_required": false,
+              "description": "Rear door open/closed status. Open door causes rapid temperature rise."
+            },
+            {
+              "id": 50,
+              "code": "fuel_level",
+              "name": "Fuel Level",
+              "canonical_name": "reefer.fuel_level",
+              "standard_unit": "%",
+              "data_type": "Double",
+              "dib_tag_id": "70.20.10.50",
+              "is_required": false,
+              "description": "Refrigeration unit diesel fuel level."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

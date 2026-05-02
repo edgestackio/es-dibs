@@ -1,0 +1,9 @@
+# EdgeStack core team owns the taxonomy, schemas, and EdgeStack-published DIBs.
+# All changes to these paths require review from @edgestackio/core before merging.
+/registry/            @edgestackio/core
+/schemas/             @edgestackio/core
+/dibs/edgestackio/    @edgestackio/core
+
+# Community DIB contributions are reviewed by the triage team.
+# At least one approval from @edgestackio/triage is required to merge.
+/dibs/                @edgestackio/triage

@@ -1,0 +1,381 @@
+{
+  "$schema": "https://raw.githubusercontent.com/edgestackio/es-dibs/main/registry/industry.schema.json",
+  "id": 20,
+  "code": "water-wastewater",
+  "name": "Water & Wastewater",
+  "description": "Potable water treatment and distribution systems, wastewater collection and treatment, stormwater management, and groundwater monitoring.",
+  "sub_industries": [
+    {
+      "id": 10,
+      "code": "potable-water-treatment",
+      "name": "Potable Water \u2014 Treatment",
+      "description": "Water treatment processes including filtration, chemical dosing, and disinfection to produce safe drinking water.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "pump-station",
+          "name": "Pump Station",
+          "dib_id": "20.10.10",
+          "description": "Raw or treated water pump station transferring water between treatment stages or into the distribution system.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "flow_rate",
+              "name": "Flow Rate",
+              "canonical_name": "pump_station.flow_rate",
+              "standard_unit": "gpm",
+              "data_type": "Double",
+              "dib_tag_id": "20.10.10.10",
+              "is_required": true,
+              "description": "Water flow rate in gallons per minute."
+            },
+            {
+              "id": 20,
+              "code": "discharge_pressure",
+              "name": "Discharge Pressure",
+              "canonical_name": "pump_station.discharge_pressure",
+              "standard_unit": "psi",
+              "data_type": "Double",
+              "dib_tag_id": "20.10.10.20",
+              "is_required": true,
+              "description": "Pump discharge pressure. Indicates system head and pump performance."
+            },
+            {
+              "id": 30,
+              "code": "motor_amps",
+              "name": "Motor Current",
+              "canonical_name": "pump_station.motor_amps",
+              "standard_unit": "A",
+              "data_type": "Double",
+              "dib_tag_id": "20.10.10.30",
+              "is_required": false,
+              "description": "Motor current draw for energy monitoring and fault detection."
+            },
+            {
+              "id": 40,
+              "code": "run_status",
+              "name": "Run Status",
+              "canonical_name": "pump_station.run_status",
+              "standard_unit": "Boolean",
+              "data_type": "Boolean",
+              "dib_tag_id": "20.10.10.40",
+              "is_required": false,
+              "description": "Pump operational status."
+            },
+            {
+              "id": 50,
+              "code": "run_hours",
+              "name": "Run Hours",
+              "canonical_name": "pump_station.run_hours",
+              "standard_unit": "h",
+              "data_type": "Double",
+              "dib_tag_id": "20.10.10.50",
+              "is_required": false,
+              "description": "Cumulative pump run hours for maintenance scheduling."
+            }
+          ]
+        },
+        {
+          "id": 20,
+          "code": "chlorination-system",
+          "name": "Chlorination System",
+          "dib_id": "20.10.20",
+          "description": "Chemical dosing system that adds chlorine to treated water for disinfection.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "chlorine_residual",
+              "name": "Chlorine Residual",
+              "canonical_name": "chlorination.chlorine_residual",
+              "standard_unit": "mg/L",
+              "data_type": "Double",
+              "dib_tag_id": "20.10.20.10",
+              "is_required": true,
+              "description": "Free chlorine residual in treated water. Regulatory minimum typically 0.2 mg/L at the entry point."
+            },
+            {
+              "id": 20,
+              "code": "ph",
+              "name": "pH",
+              "canonical_name": "chlorination.ph",
+              "standard_unit": "pH",
+              "data_type": "Double",
+              "dib_tag_id": "20.10.20.20",
+              "is_required": true,
+              "description": "Water pH. Chlorine effectiveness is highly pH-dependent; optimal range 6.5\u20137.5."
+            },
+            {
+              "id": 30,
+              "code": "feed_rate",
+              "name": "Chemical Feed Rate",
+              "canonical_name": "chlorination.feed_rate",
+              "standard_unit": "lb/d",
+              "data_type": "Double",
+              "dib_tag_id": "20.10.20.30",
+              "is_required": false,
+              "description": "Chlorine dosing rate in pounds per day."
+            },
+            {
+              "id": 40,
+              "code": "tank_level",
+              "name": "Chemical Tank Level",
+              "canonical_name": "chlorination.tank_level",
+              "standard_unit": "%",
+              "data_type": "Double",
+              "dib_tag_id": "20.10.20.40",
+              "is_required": false,
+              "description": "Chemical solution tank level as a percentage."
+            }
+          ]
+        },
+        {
+          "id": 30,
+          "code": "filter-bank",
+          "name": "Filter Bank",
+          "dib_id": "20.10.30",
+          "description": "Multimedia or membrane filtration system removing suspended solids, turbidity, and pathogens from raw water.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "differential_pressure",
+              "name": "Differential Pressure",
+              "canonical_name": "filter.differential_pressure",
+              "standard_unit": "psi",
+              "data_type": "Double",
+              "dib_tag_id": "20.10.30.10",
+              "is_required": true,
+              "description": "Pressure drop across the filter media. Rising DP indicates filter loading requiring backwash."
+            },
+            {
+              "id": 20,
+              "code": "turbidity",
+              "name": "Effluent Turbidity",
+              "canonical_name": "filter.turbidity",
+              "standard_unit": "NTU",
+              "data_type": "Double",
+              "dib_tag_id": "20.10.30.20",
+              "is_required": true,
+              "description": "Filtered water turbidity in NTU. Regulatory limit typically 0.3 NTU."
+            },
+            {
+              "id": 30,
+              "code": "run_time",
+              "name": "Run Time",
+              "canonical_name": "filter.run_time",
+              "standard_unit": "h",
+              "data_type": "Double",
+              "dib_tag_id": "20.10.30.30",
+              "is_required": false,
+              "description": "Time since last backwash cycle."
+            },
+            {
+              "id": 40,
+              "code": "backwash_status",
+              "name": "Backwash Status",
+              "canonical_name": "filter.backwash_status",
+              "standard_unit": "Boolean",
+              "data_type": "Boolean",
+              "dib_tag_id": "20.10.30.40",
+              "is_required": false,
+              "description": "Filter currently in backwash cycle."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "code": "potable-water-storage",
+      "name": "Potable Water \u2014 Storage",
+      "description": "Finished water storage including ground-level tanks and elevated water towers providing system pressure and emergency reserves.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "storage-tank",
+          "name": "Water Storage Tank / Tower",
+          "dib_id": "20.20.10",
+          "description": "Finished water storage tank or elevated tower. Level monitoring provides both inventory and system pressure data.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "level",
+              "name": "Level",
+              "canonical_name": "water_storage.level",
+              "standard_unit": "ft",
+              "data_type": "Double",
+              "dib_tag_id": "20.20.10.10",
+              "is_required": true,
+              "description": "Water level in the tank. Used to manage pump cycling and monitor storage capacity."
+            },
+            {
+              "id": 20,
+              "code": "volume",
+              "name": "Volume",
+              "canonical_name": "water_storage.volume",
+              "standard_unit": "gal",
+              "data_type": "Double",
+              "dib_tag_id": "20.20.10.20",
+              "is_required": false,
+              "description": "Calculated water volume in gallons."
+            },
+            {
+              "id": 30,
+              "code": "temperature",
+              "name": "Water Temperature",
+              "canonical_name": "water_storage.temperature",
+              "standard_unit": "degF",
+              "data_type": "Double",
+              "dib_tag_id": "20.20.10.30",
+              "is_required": false,
+              "description": "Water temperature. High temps accelerate chlorine decay; freeze risk in cold climates."
+            },
+            {
+              "id": 40,
+              "code": "chlorine_residual",
+              "name": "Chlorine Residual",
+              "canonical_name": "water_storage.chlorine_residual",
+              "standard_unit": "mg/L",
+              "data_type": "Double",
+              "dib_tag_id": "20.20.10.40",
+              "is_required": false,
+              "description": "Residual chlorine in stored water. Decreases over time; requires monitoring for continued disinfection."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "code": "wastewater-collection",
+      "name": "Wastewater \u2014 Collection",
+      "description": "Municipal wastewater collection system lift stations and force mains transporting sewage to treatment facilities.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "lift-station",
+          "name": "Lift Station",
+          "dib_id": "20.30.10",
+          "description": "Wet well and pump station that lifts wastewater from lower to higher elevation in the collection system. Critical to prevent sewage backup.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "wet_well_level",
+              "name": "Wet Well Level",
+              "canonical_name": "lift_station.wet_well_level",
+              "standard_unit": "ft",
+              "data_type": "Double",
+              "dib_tag_id": "20.30.10.10",
+              "is_required": true,
+              "description": "Wastewater level in the wet well. Controls pump on/off setpoints and triggers overflow alarms."
+            },
+            {
+              "id": 20,
+              "code": "flow_rate",
+              "name": "Flow Rate",
+              "canonical_name": "lift_station.flow_rate",
+              "standard_unit": "gpm",
+              "data_type": "Double",
+              "dib_tag_id": "20.30.10.20",
+              "is_required": false,
+              "description": "Pump discharge flow rate."
+            },
+            {
+              "id": 30,
+              "code": "motor_amps",
+              "name": "Motor Current",
+              "canonical_name": "lift_station.motor_amps",
+              "standard_unit": "A",
+              "data_type": "Double",
+              "dib_tag_id": "20.30.10.30",
+              "is_required": false,
+              "description": "Pump motor current. High amps indicate solids buildup or mechanical issues."
+            },
+            {
+              "id": 40,
+              "code": "run_status",
+              "name": "Pump Run Status",
+              "canonical_name": "lift_station.run_status",
+              "standard_unit": "Boolean",
+              "data_type": "Boolean",
+              "dib_tag_id": "20.30.10.40",
+              "is_required": false,
+              "description": "Pump operational status."
+            },
+            {
+              "id": 50,
+              "code": "run_hours",
+              "name": "Run Hours",
+              "canonical_name": "lift_station.run_hours",
+              "standard_unit": "h",
+              "data_type": "Double",
+              "dib_tag_id": "20.30.10.50",
+              "is_required": false,
+              "description": "Cumulative pump run hours."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "code": "wastewater-treatment",
+      "name": "Wastewater \u2014 Treatment",
+      "description": "Biological and chemical treatment processes that remove contaminants from municipal and industrial wastewater before discharge.",
+      "device_types": [
+        {
+          "id": 10,
+          "code": "aeration-system",
+          "name": "Aeration System",
+          "dib_id": "20.40.10",
+          "description": "Blower-driven aeration system supplying oxygen to the activated sludge process for biological treatment.",
+          "tags": [
+            {
+              "id": 10,
+              "code": "dissolved_oxygen",
+              "name": "Dissolved Oxygen",
+              "canonical_name": "aeration.dissolved_oxygen",
+              "standard_unit": "mg/L",
+              "data_type": "Double",
+              "dib_tag_id": "20.40.10.10",
+              "is_required": true,
+              "description": "DO level in the aeration basin. Typical target 1.5\u20132.5 mg/L for biological activity."
+            },
+            {
+              "id": 20,
+              "code": "airflow",
+              "name": "Airflow",
+              "canonical_name": "aeration.airflow",
+              "standard_unit": "scfm",
+              "data_type": "Double",
+              "dib_tag_id": "20.40.10.20",
+              "is_required": true,
+              "description": "Air delivery rate in standard cubic feet per minute."
+            },
+            {
+              "id": 30,
+              "code": "blower_power",
+              "name": "Blower Power",
+              "canonical_name": "aeration.blower_power",
+              "standard_unit": "kW",
+              "data_type": "Double",
+              "dib_tag_id": "20.40.10.30",
+              "is_required": false,
+              "description": "Blower motor power consumption. Used for energy efficiency calculations."
+            },
+            {
+              "id": 40,
+              "code": "mlss",
+              "name": "MLSS",
+              "canonical_name": "aeration.mlss",
+              "standard_unit": "mg/L",
+              "data_type": "Double",
+              "dib_tag_id": "20.40.10.40",
+              "is_required": false,
+              "description": "Mixed liquor suspended solids concentration. Indicates active biomass in the process."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

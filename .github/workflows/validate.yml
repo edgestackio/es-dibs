@@ -1,0 +1,111 @@
+name: Validate Registry
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Validate taxonomy and DIB files
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install jsonschema
+
+      - name: Run validation
+        run: python - <<'EOF'
+import json
+import sys
+from pathlib import Path
+from jsonschema import validate, ValidationError
+
+ROOT = Path(".")
+errors = []
+passed = 0
+
+def load_json(path):
+    with open(path) as f:
+        return json.load(f)
+
+def check(label, instance, schema):
+    global passed
+    try:
+        validate(instance=instance, schema=schema)
+        print(f"  ✓  {label}")
+        passed += 1
+    except ValidationError as e:
+        errors.append(f"  ✗  {label}\n     {e.message} at {list(e.absolute_path)}")
+
+# Load schemas
+industry_schema = load_json(ROOT / "registry/industry.schema.json")
+dib_schema      = load_json(ROOT / "schemas/dib-definition.schema.json")
+
+# ── Registry index ────────────────────────────────────────────────────────
+print("\n── Registry Index ───────────────────────────────────────────────")
+index = load_json(ROOT / "registry/index.json")
+print(f"  ✓  registry/index.json ({len(index['industries'])} industries)")
+passed += 1
+
+# ── Industry files ────────────────────────────────────────────────────────
+print("\n── Industry Files ───────────────────────────────────────────────")
+valid_dib_ids     = set()
+valid_dib_tag_ids = set()
+
+for entry in index["industries"]:
+    path = ROOT / "registry" / entry["file"]
+    if not path.exists():
+        errors.append(f"  ✗  {entry['file']}\n     File listed in index.json but not found on disk")
+        continue
+    industry = load_json(path)
+    check(entry["file"], industry, industry_schema)
+
+    # Collect all valid IDs for cross-reference checks
+    for sub in industry.get("sub_industries", []):
+        for dt in sub.get("device_types", []):
+            valid_dib_ids.add(dt["dib_id"])
+            for tag in dt.get("tags", []):
+                valid_dib_tag_ids.add(tag["dib_tag_id"])
+
+print(f"\n  Indexed {len(valid_dib_ids)} device types, {len(valid_dib_tag_ids)} tags")
+
+# ── DIB definition files ──────────────────────────────────────────────────
+print("\n── DIB Definition Files ─────────────────────────────────────────")
+dib_files = sorted((ROOT / "dibs").rglob("*.json"))
+
+if not dib_files:
+    print("  (no DIB files found)")
+else:
+    for path in dib_files:
+        rel = path.relative_to(ROOT)
+        dib = load_json(path)
+        check(str(rel), dib, dib_schema)
+
+        # Cross-reference dib_id against taxonomy
+        if "dib_id" in dib and dib["dib_id"] not in valid_dib_ids:
+            errors.append(f"  ✗  {rel}\n     dib_id '{dib['dib_id']}' not found in any industry file")
+
+        # Cross-reference dib_tag_ids against taxonomy
+        for td in dib.get("tag_definitions", []):
+            if "dib_tag_id" in td and td["dib_tag_id"] not in valid_dib_tag_ids:
+                errors.append(f"  ✗  {rel}\n     dib_tag_id '{td['dib_tag_id']}' not found in taxonomy")
+
+# ── Summary ───────────────────────────────────────────────────────────────
+print(f"\n── Summary ──────────────────────────────────────────────────────")
+print(f"  Passed: {passed}   Failed: {len(errors)}")
+if errors:
+    print("\nErrors:")
+    for e in errors:
+        print(e)
+    sys.exit(1)
+else:
+    print("\n  All checks passed.")
+EOF
